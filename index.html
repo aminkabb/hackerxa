@@ -1,0 +1,4193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker XA | منصة تعليم الأمن السيبراني المحترفة</title>
+    
+    <!-- Bootstrap 5 RTL -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- XTerm.js -->
+    <link rel="stylesheet" href="https://unpkg.com/xterm/css/xterm.css">
+    
+    <style>
+        /* ===== متغيرات CSS ===== */
+        :root {
+            --primary: #00ff88;
+            --secondary: #00ccff;
+            --danger: #ff0055;
+            --warning: #ffaa00;
+            --info: #00ccff;
+            --dark: #0a0a0f;
+            --darker: #050508;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+        }
+
+        /* ===== إعادة التعيين ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ===== التايبوجرافي ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .display-1 {
+            font-size: 4rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .display-2 {
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--primary), var(--danger));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        /* ===== تأثيرات النيون ===== */
+        .neon-text {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.7);
+        }
+
+        .neon-border {
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 30px var(--primary);
+            }
+            to {
+                text-shadow: 0 0 20px var(--primary), 0 0 30px var(--secondary), 0 0 40px var(--secondary);
+            }
+        }
+
+        /* ===== الأزرار ===== */
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), #00cc6a);
+            border: none;
+            color: #000;
+            font-weight: 900;
+            padding: 12px 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-outline-primary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+            font-weight: 700;
+            padding: 10px 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-primary:hover {
+            background: rgba(0, 255, 136, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            border: none;
+            color: #000;
+            font-weight: 900;
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ff0055, #cc0044);
+            border: none;
+            color: #fff;
+            font-weight: 900;
+        }
+
+        /* ===== الكروت ===== */
+        .cyber-card {
+            background: rgba(20, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            transition: 0.5s;
+        }
+
+        .cyber-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.15);
+        }
+
+        .cyber-card:hover::before {
+            left: 100%;
+        }
+
+        /* ===== التيرمنال ===== */
+        #terminal-container {
+            background: #000;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 500px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .terminal-header {
+            background: linear-gradient(90deg, #111, #222);
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terminal-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .control-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .control-btn.close { background: #ff5f56; }
+        .control-btn.minimize { background: #ffbd2e; }
+        .control-btn.maximize { background: #27ca3f; }
+
+        /* ===== شاشة التحميل ===== */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .hacker-text {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* ===== النافبار ===== */
+        .navbar {
+            background: rgba(10, 10, 15, 0.98) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 900;
+            font-size: 1.8rem;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            font-weight: 700;
+            padding: 8px 16px !important;
+            margin: 0 5px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary) !important;
+        }
+
+        .nav-link.active {
+            background: linear-gradient(45deg, var(--primary), transparent);
+            color: #000 !important;
+        }
+
+        /* ===== الهيرو ===== */
+        .hero-section {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, rgba(10,10,15,0.9), rgba(21,21,34,0.9));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 204, 255, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* ===== الإحصائيات ===== */
+        .stats-section {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 60px 0;
+            border-top: 1px solid rgba(0, 255, 136, 0.1);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* ===== المودال ===== */
+        .modal-content {
+            background: rgba(20, 20, 25, 0.98);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-title {
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        /* ===== الفوتر ===== */
+        footer {
+            background: #000;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .footer-links h5 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* ===== التقدم ===== */
+        .progress-cyber {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-bar-cyber {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar-cyber::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            100% { left: 100%; }
+        }
+
+        /* ===== التحديات ===== */
+        .challenge-card {
+            background: linear-gradient(135deg, rgba(30,30,40,0.9), rgba(40,40,50,0.9));
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--danger));
+        }
+
+        .challenge-card.easy { border-color: var(--primary); }
+        .challenge-card.medium { border-color: var(--warning); }
+        .challenge-card.hard { border-color: var(--danger); }
+
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        /* ===== الأدوات ===== */
+        .tool-card {
+            background: rgba(25, 25, 35, 0.9);
+            border: 1px solid rgba(0, 204, 255, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+            text-align: center;
+        }
+
+        .tool-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 204, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 35px;
+            color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+            box-shadow: 0 20px 40px rgba(0, 204, 255, 0.2);
+        }
+
+        .tool-card:hover .tool-icon {
+            transform: scale(1.1);
+            background: rgba(0, 204, 255, 0.2);
+        }
+
+        /* ===== الأنميشن ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* ===== التجاوب ===== */
+        @media (max-width: 768px) {
+            .display-1 { font-size: 2.5rem; }
+            .display-2 { font-size: 2rem; }
+            .hero-section { padding: 120px 0 80px; }
+            #terminal-container { height: 400px; }
+            .stat-number { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 576px) {
+            .display-1 { font-size: 2rem; }
+            .display-2 { font-size: 1.5rem; }
+            .btn-primary, .btn-outline-primary { padding: 10px 20px; }
+            .cyber-card { padding: 20px; }
+        }
+
+        /* ===== سكرول بار مخصص ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(var(--secondary), var(--primary));
+        }
+
+        /* ===== يوتيليتي كلاسز ===== */
+        .text-gradient {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bg-grid {
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== الأنيميشن العامة ===== */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* ===== الأقسام ===== */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== الفريق ===== */
+        .team-card {
+            background: rgba(30, 30, 40, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+        }
+
+        .team-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid var(--primary);
+            padding: 3px;
+        }
+
+        /* ===== الفيديوهات ===== */
+        .video-card {
+            background: rgba(25, 25, 35, 0.9);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 48px;
+        }
+
+        /* ===== الشهادات ===== */
+        .certificate-card {
+            background: linear-gradient(135deg, rgba(25,25,35,0.9), rgba(35,35,45,0.9));
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        /* ===== المدونة ===== */
+        .blog-card {
+            background: rgba(30, 30, 40, 0.9);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* ===== التواصل ===== */
+        .contact-form {
+            background: rgba(20, 20, 25, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .contact-info {
+            background: rgba(20, 20, 25, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            height: 100%;
+        }
+
+        /* ===== الدردشة ===== */
+        .chat-container {
+            background: rgba(20, 20, 25, 0.9);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .chat-input {
+            border-top: 1px solid rgba(0, 255, 136, 0.1);
+            padding: 15px;
+        }
+
+        /* ===== لوحة التحكم ===== */
+        .dashboard-card {
+            background: rgba(25, 25, 35, 0.9);
+            border-radius: 12px;
+            padding: 25px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        /* ===== القوائم ===== */
+        .list-group-cyber {
+            background: rgba(20, 20, 25, 0.9);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .list-group-cyber .list-group-item {
+            background: transparent;
+            color: var(--light);
+            border-color: rgba(0, 255, 136, 0.1);
+            padding: 15px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .list-group-cyber .list-group-item:hover {
+            background: rgba(0, 255, 136, 0.05);
+            color: var(--primary);
+        }
+
+        /* ===== الأكواد ===== */
+        .code-block {
+            background: #000;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary);
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        /* ===== الجداول ===== */
+        .table-cyber {
+            background: rgba(20, 20, 25, 0.9);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table-cyber th {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+            font-weight: 700;
+            padding: 15px;
+        }
+
+        .table-cyber td {
+            padding: 12px 15px;
+            border-color: rgba(0, 255, 136, 0.1);
+        }
+
+        .table-cyber tr:hover {
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        /* ===== الأوفركول ===== */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        /* ===== الأدوات المساعدة ===== */
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+        }
+
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        /* ===== البادجات ===== */
+        .badge-cyber {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            font-weight: 700;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        /* ===== التنبيهات ===== */
+        .alert-cyber {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        /* ===== الأيقونات المتحركة ===== */
+        .icon-spin {
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ===== القوائم المنسدلة ===== */
+        .dropdown-cyber .dropdown-menu {
+            background: rgba(20, 20, 25, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 10px 0;
+        }
+
+        .dropdown-cyber .dropdown-item {
+            color: var(--light);
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-cyber .dropdown-item:hover {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+        }
+
+        /* ===== النموذج ===== */
+        .form-control-cyber {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            color: var(--light);
+            border-radius: 8px;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control-cyber:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+            color: var(--light);
+            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+        }
+
+        /* ===== التبويبات ===== */
+        .nav-tabs-cyber {
+            border-bottom: 2px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .nav-tabs-cyber .nav-link {
+            color: var(--gray);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: -2px;
+        }
+
+        .nav-tabs-cyber .nav-link.active {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* ===== الأكوادر ===== */
+        .accordion-cyber .accordion-item {
+            background: rgba(20, 20, 25, 0.9);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .accordion-cyber .accordion-button {
+            background: transparent;
+            color: var(--light);
+            font-weight: 700;
+            border: none;
+        }
+
+        .accordion-cyber .accordion-button:not(.collapsed) {
+            color: var(--primary);
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        /* ===== الصور ===== */
+        .img-cyber {
+            border-radius: 12px;
+            border: 2px solid rgba(0, 255, 136, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .img-cyber:hover {
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+
+        /* ===== الخلفيات ===== */
+        .bg-primary-gradient {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+        }
+
+        .bg-danger-gradient {
+            background: linear-gradient(45deg, var(--danger), #ff3366);
+        }
+
+        .bg-warning-gradient {
+            background: linear-gradient(45deg, var(--warning), #ffcc00);
+        }
+
+        /* ===== الإشعارات ===== */
+        .toast-cyber {
+            background: rgba(20, 20, 25, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            color: var(--light);
+        }
+
+        /* ===== الخرائط ===== */
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 136, 0.1);
+            height: 400px;
+        }
+
+        /* ===== الإحصائيات المصغرة ===== */
+        .mini-stat {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        .mini-stat .number {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .mini-stat .label {
+            color: var(--gray);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body class="bg-grid">
+    <!-- ===== شاشة التحميل ===== -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="hacker-text mb-4">
+                <span class="neon-text">INITIALIZING HACKER XA PLATFORM</span>
+                <div class="mt-3">
+                    <span class="text-success">[</span>
+                    <span class="text-primary">██████████</span>
+                    <span class="text-success">] 100%</span>
+                </div>
+            </div>
+            <div class="spinner-border text-success" style="width: 3rem; height: 3rem;"></div>
+            <div class="mt-4 text-muted">
+                <small>جاري تحميل النظام الآمن...</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== التنبيهات ===== -->
+    <div id="notification-area" class="position-fixed top-0 end-0 p-3" style="z-index: 9999;"></div>
+
+    <!-- ===== النافبار ===== -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <!-- اللوجو -->
+            <a class="navbar-brand d-flex align-items-center gap-3" href="#">
+                <div class="position-relative">
+                    <i class="fas fa-shield-alt text-success fa-2x"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        PRO
+                    </span>
+                </div>
+                <div>
+                    <h4 class="fw-bold mb-0">HACKER <span class="neon-text">XA</span></h4>
+                    <small class="text-muted" style="font-size: 10px;">ETHICAL HACKING PLATFORM</small>
+                </div>
+            </a>
+
+            <!-- زر القائمة -->
+            <button class="navbar-toggler neon-border" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- عناصر القائمة -->
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">
+                            <i class="fas fa-home me-2"></i>الرئيسية
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">
+                            <i class="fas fa-graduation-cap me-2"></i>المسارات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#terminal">
+                            <i class="fas fa-terminal me-2"></i>التيرمنال
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#challenges">
+                            <i class="fas fa-flag me-2"></i>التحديات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tools">
+                            <i class="fas fa-tools me-2"></i>الأدوات
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-cyber">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-plus-circle me-2"></i>المزيد
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#community"><i class="fas fa-users me-2"></i>المجتمع</a></li>
+                            <li><a class="dropdown-item" href="#blog"><i class="fas fa-blog me-2"></i>المدونة</a></li>
+                            <li><a class="dropdown-item" href="#team"><i class="fas fa-users-cog me-2"></i>الفريق</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#contact"><i class="fas fa-envelope me-2"></i>اتصل بنا</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- أزرار المستخدم -->
+                <div class="d-flex align-items-center gap-3">
+                    <!-- البحث -->
+                    <div class="position-relative d-none d-md-block">
+                        <input type="text" class="form-control form-control-cyber" placeholder="بحث..." style="min-width: 250px;">
+                        <i class="fas fa-search position-absolute end-3 top-50 translate-middle-y text-secondary"></i>
+                    </div>
+
+                    <!-- أزرار الحساب -->
+                    <div id="authButtons" class="d-flex gap-2">
+                        <button class="btn btn-outline-primary btn-sm px-4" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fas fa-sign-in-alt me-2"></i>دخول
+                        </button>
+                        <button class="btn btn-primary btn-sm px-4" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            <i class="fas fa-user-plus me-2"></i>انضم
+                        </button>
+                    </div>
+
+                    <!-- حساب المستخدم -->
+                    <div class="dropdown dropdown-cyber d-none" id="userProfile">
+                        <button class="btn btn-dark dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+                            <div class="position-relative">
+                                <img src="https://ui-avatars.com/api/?name=Hacker&background=00ff88&color=000" class="rounded-circle" width="35" height="35" alt="User">
+                                <span class="position-absolute bottom-0 end-0 translate-middle p-1 bg-success border border-2 border-dark rounded-circle"></span>
+                            </div>
+                            <span class="fw-bold text-white" id="userNameDisplay">Hacker</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#dashboard"><i class="fas fa-tachometer-alt me-2 text-primary"></i>لوحة التحكم</a></li>
+                            <li><a class="dropdown-item" href="#profile"><i class="fas fa-user me-2 text-info"></i>الملف الشخصي</a></li>
+                            <li><a class="dropdown-item" href="#achievements"><i class="fas fa-trophy me-2 text-warning"></i>الإنجازات</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><button class="dropdown-item text-danger" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i>تسجيل الخروج</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== القسم الرئيسي ===== -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <span class="badge-cyber mb-4 d-inline-block">
+                        <i class="fas fa-bolt me-2"></i>Live Platform v3.0
+                    </span>
+                    
+                    <h1 class="display-1 fw-black mb-4">
+                        من <span class="text-gradient">صفر</span> إلى<br>
+                        <span class="neon-text glow">هاكر محترف</span>
+                    </h1>
+                    
+                    <p class="lead mb-5">
+                        انطلق في رحلة تحولك من مبتدئ إلى خبير في الأمن السيبراني. 
+                        منصة متكاملة مع تيرمنال تفاعلي، تحديات حقيقية، وأدوات متطورة.
+                    </p>
+                    
+                    <div class="d-flex flex-wrap gap-3 mb-5">
+                        <a href="#courses" class="btn btn-primary btn-lg px-5">
+                            <i class="fas fa-rocket me-2"></i>ابدأ الرحلة
+                        </a>
+                        <a href="#terminal" class="btn btn-outline-primary btn-lg px-5">
+                            <i class="fas fa-terminal me-2"></i>التيرمنال التفاعلي
+                        </a>
+                        <button class="btn btn-outline-success btn-lg px-4" onclick="showDemoVideo()">
+                            <i class="fas fa-play-circle me-2"></i>شاهد العرض
+                        </button>
+                    </div>
+
+                    <!-- الإحصائيات -->
+                    <div class="row g-4 mt-5">
+                        <div class="col-4">
+                            <div class="stat-item">
+                                <div class="stat-number" id="studentsCount">5000</div>
+                                <div class="stat-label">هاكر متدرب</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-item">
+                                <div class="stat-number" id="commandsCount">200+</div>
+                                <div class="stat-label">أمر تيرمنال</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-item">
+                                <div class="stat-number" id="challengesCount">100+</div>
+                                <div class="stat-label">تحدي CTF</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-left">
+                    <!-- تيرمنال العرض التوضيحي -->
+                    <div class="terminal floating">
+                        <div class="terminal-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="terminal-controls">
+                                    <span class="control-btn close"></span>
+                                    <span class="control-btn minimize"></span>
+                                    <span class="control-btn maximize"></span>
+                                </div>
+                                <span class="text-white small">root@hacker-xa:~/demo</span>
+                                <div class="text-muted">
+                                    <i class="fas fa-wifi"></i>
+                                    <i class="fas fa-shield-alt ms-2"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3" style="height: 300px; overflow-y: auto; background: #000;">
+                            <div class="text-success mb-2">root@hacker-xa:~# welcome</div>
+                            <div class="text-info mb-2">[*] Initializing Hacker XA Platform...</div>
+                            <div class="text-success mb-2">[✓] Terminal System Ready</div>
+                            <div class="text-warning mb-2">[!] 200+ Commands Loaded</div>
+                            <div class="text-primary mb-2">[+] CTF Challenges: 100+</div>
+                            <div class="text-success mb-2">[✓] All Systems Operational</div>
+                            <br>
+                            <div class="text-secondary small">
+                                Type 'help' to see available commands<br>
+                                Type 'ctf' for CTF challenges<br>
+                                Type 'tools' for hacking tools
+                            </div>
+                            <br>
+                            <div class="text-success">root@hacker-xa:~# <span class="cursor">█</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== إحصائيات سريعة ===== -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="5000">0</div>
+                        <div class="stat-label">طالب نشط</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="150">0</div>
+                        <div class="stat-label">درس مسجل</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="50">0</div>
+                        <div class="stat-label">تحدي CTF</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="120">0</div>
+                        <div class="stat-label">شهادة معتمدة</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== المسارات التعليمية ===== -->
+    <section id="courses" class="py-5">
+        <div class="container py-5">
+            <div class="section-title" data-aos="fade-up">
+                <h2 class="neon-text">المسارات التعليمية</h2>
+                <p>اختر مسارك التعليمي وابدأ رحلة الاحتراف في الأمن السيبراني</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- مسار 1 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="cyber-card">
+                        <div class="text-center mb-4">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-shield-alt fa-2x text-success"></i>
+                            </div>
+                        </div>
+                        <h4 class="text-center text-white mb-3">أساسيات الأمن السيبراني</h4>
+                        <p class="text-center text-secondary mb-4">
+                            ابدأ رحلتك في عالم الأمن السيبراني من الصفر. تعلم المفاهيم الأساسية والتقنيات الأولية.
+                        </p>
+                        <div class="d-flex justify-content-between text-white-50 mb-4">
+                            <span><i class="fas fa-video"></i> 15 درس</span>
+                            <span><i class="fas fa-clock"></i> 10 ساعات</span>
+                            <span><i class="fas fa-users"></i> 1250</span>
+                        </div>
+                        <div class="progress-cyber">
+                            <div class="progress-bar-cyber" style="width: 30%"></div>
+                        </div>
+                        <button class="btn btn-outline-primary w-100 mt-3" onclick="startCourse(1)">
+                            <i class="fas fa-play-circle me-2"></i>ابدأ التعلم
+                        </button>
+                    </div>
+                </div>
+
+                <!-- مسار 2 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="cyber-card">
+                        <div class="text-center mb-4">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-globe fa-2x text-danger"></i>
+                            </div>
+                        </div>
+                        <h4 class="text-center text-white mb-3">اختبار اختراق الويب</h4>
+                        <p class="text-center text-secondary mb-4">
+                            تعلم كيفية اكتشاف واختبار ثغرات الويب مثل SQL Injection وXSS والثغرات الأخرى.
+                        </p>
+                        <div class="d-flex justify-content-between text-white-50 mb-4">
+                            <span><i class="fas fa-video"></i> 20 درس</span>
+                            <span><i class="fas fa-clock"></i> 15 ساعة</span>
+                            <span><i class="fas fa-users"></i> 890</span>
+                        </div>
+                        <div class="progress-cyber">
+                            <div class="progress-bar-cyber" style="width: 45%"></div>
+                        </div>
+                        <button class="btn btn-outline-primary w-100 mt-3" onclick="startCourse(2)">
+                            <i class="fas fa-play-circle me-2"></i>ابدأ التعلم
+                        </button>
+                    </div>
+                </div>
+
+                <!-- مسار 3 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="cyber-card">
+                        <div class="text-center mb-4">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-network-wired fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h4 class="text-center text-white mb-3">أمن الشبكات</h4>
+                        <p class="text-center text-secondary mb-4">
+                            تأمين الشبكات والبنية التحتية. تعلم كيفية حماية الشبكات من الهجمات والاختراقات.
+                        </p>
+                        <div class="d-flex justify-content-between text-white-50 mb-4">
+                            <span><i class="fas fa-video"></i> 18 درس</span>
+                            <span><i class="fas fa-clock"></i> 12 ساعة</span>
+                            <span><i class="fas fa-users"></i> 670</span>
+                        </div>
+                        <div class="progress-cyber">
+                            <div class="progress-bar-cyber" style="width: 60%"></div>
+                        </div>
+                        <button class="btn btn-outline-primary w-100 mt-3" onclick="startCourse(3)">
+                            <i class="fas fa-play-circle me-2"></i>ابدأ التعلم
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="#all-courses" class="btn btn-primary px-5">
+                    <i class="fas fa-list me-2"></i>عرض جميع المسارات
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== التيرمنال التفاعلي ===== -->
+    <section id="terminal" class="py-5 bg-dark">
+        <div class="container py-5">
+            <div class="section-title" data-aos="fade-up">
+                <h2 class="neon-text">تيرمنال الهاكر التفاعلي</h2>
+                <p>200+ أمر تيرمنال مع محاكاة واقعية وميزات متقدمة</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <!-- التيرمنال الرئيسي -->
+                    <div id="terminal-container">
+                        <div class="terminal-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="terminal-controls">
+                                        <span class="control-btn close" onclick="closeTerminal()"></span>
+                                        <span class="control-btn minimize" onclick="minimizeTerminal()"></span>
+                                        <span class="control-btn maximize" onclick="maximizeTerminal()"></span>
+                                    </div>
+                                    <span class="text-white">Hacker XA Terminal v2.0</span>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-success" onclick="saveTerminal()" title="حفظ الجلسة">
+                                        <i class="fas fa-save"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="clearTerminal()" title="مسح الشاشة">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-info" onclick="showHelp()" title="المساعدة">
+                                        <i class="fas fa-question"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- سيتم إضافة XTerm هنا -->
+                        <div id="terminal"></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-left">
+                    <!-- لوحة التحكم -->
+                    <div class="cyber-card h-100">
+                        <h4 class="neon-text mb-4">
+                            <i class="fas fa-cogs me-2"></i>لوحة التحكم
+                        </h4>
+                        
+                        <!-- فئات الأوامر -->
+                        <div class="mb-4">
+                            <h6 class="text-white mb-3">فئات الأوامر:</h6>
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <span class="badge bg-primary cursor-pointer" onclick="filterCommands('basic')">أساسيات</span>
+                                <span class="badge bg-success cursor-pointer" onclick="filterCommands('network')">شبكات</span>
+                                <span class="badge bg-danger cursor-pointer" onclick="filterCommands('web')">ويب</span>
+                                <span class="badge bg-warning cursor-pointer" onclick="filterCommands('pentest')">اختبار اختراق</span>
+                                <span class="badge bg-info cursor-pointer" onclick="filterCommands('forensics')">فورنسك</span>
+                            </div>
+                        </div>
+
+                        <!-- أوامر سريعة -->
+                        <div class="mb-4">
+                            <h6 class="text-white mb-3">أوامر سريعة:</h6>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <button class="btn btn-sm btn-outline-primary w-100 mb-2" onclick="runCommand('help')">
+                                        help
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-sm btn-outline-success w-100 mb-2" onclick="runCommand('nmap -sV scanme.nmap.org')">
+                                        nmap
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-sm btn-outline-danger w-100 mb-2" onclick="runCommand('sqlmap --help')">
+                                        sqlmap
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-sm btn-outline-warning w-100 mb-2" onclick="runCommand('msfconsole')">
+                                        metasploit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- التقدم -->
+                        <div class="mb-4">
+                            <h6 class="text-white mb-3">تقدمك:</h6>
+                            <div class="progress-cyber mb-2">
+                                <div class="progress-bar-cyber" id="terminalProgress" style="width: 0%"></div>
+                            </div>
+                            <small class="text-secondary">
+                                <span id="commandsCompleted">0</span>/200 أمر مكتمل
+                            </small>
+                        </div>
+
+                        <!-- الإنجازات -->
+                        <div>
+                            <h6 class="text-white mb-3">إنجازاتك:</h6>
+                            <div class="d-flex flex-wrap gap-2" id="achievements">
+                                <span class="badge bg-dark border border-success">
+                                    <i class="fas fa-terminal me-1"></i> مبتدئ
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- أقسام الأوامر -->
+            <div class="row mt-5 g-4">
+                <div class="col-md-3" data-aos="fade-up">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <h5 class="text-white mb-3">أوامر لينكس</h5>
+                        <p class="text-secondary small mb-4">50+ أمر أساسي ومتقدم لإدارة النظام</p>
+                        <button class="btn btn-outline-primary btn-sm w-100" onclick="showCommandCategory('linux')">
+                            استعراض الأوامر
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h5 class="text-white mb-3">أوامر الشبكات</h5>
+                        <p class="text-secondary small mb-4">40+ أمر للشبكات والمسح والتحليل</p>
+                        <button class="btn btn-outline-success btn-sm w-100" onclick="showCommandCategory('network')">
+                            استعراض الأوامر
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h5 class="text-white mb-3">اختبار الاختراق</h5>
+                        <p class="text-secondary small mb-4">60+ أمر للاختبار والثغرات والأدوات</p>
+                        <button class="btn btn-outline-danger btn-sm w-100" onclick="showCommandCategory('pentest')">
+                            استعراض الأوامر
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <h5 class="text-white mb-3">الفورنسك</h5>
+                        <p class="text-secondary small mb-4">50+ أمر للتحقيق والتشفير والتحليل</p>
+                        <button class="btn btn-outline-warning btn-sm w-100" onclick="showCommandCategory('forensics')">
+                            استعراض الأوامر
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== تحديات CTF ===== -->
+    <section id="challenges" class="py-5">
+        <div class="container py-5">
+            <div class="section-title" data-aos="fade-up">
+                <h2 class="neon-text">تحديات الهاكر (CTF)</h2>
+                <p>تدرب على تحديات حقيقية مع حلول تفاعلية وتقييم فوري</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- تحدي 1 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="challenge-card easy">
+                        <span class="badge bg-success mb-3">سهل - 100 نقطة</span>
+                        <h5 class="text-white mb-3">ثغرة SQL Injection</h5>
+                        <p class="text-secondary mb-4">
+                            اكتشف واستغل ثغرة SQL Injection في تطبيق ويب. استخرج البيانات المخفية.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <small class="text-white-50"><i class="fas fa-users"></i> 450 حلاً</small>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="startChallenge(1)">
+                                <i class="fas fa-play me-2"></i>ابدأ التحدي
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تحدي 2 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="challenge-card medium">
+                        <span class="badge bg-warning mb-3">متوسط - 200 نقطة</span>
+                        <h5 class="text-white mb-3">تحليل الشبكات</h5>
+                        <p class="text-secondary mb-4">
+                            حلل حزمة شبكة واستخرج المعلومات المخفية. ابحث عن العناوين المخفية.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <small class="text-white-50"><i class="fas fa-users"></i> 190 حلاً</small>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="startChallenge(2)">
+                                <i class="fas fa-play me-2"></i>ابدأ التحدي
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تحدي 3 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="challenge-card hard">
+                        <span class="badge bg-danger mb-3">صعب - 300 نقطة</span>
+                        <h5 class="text-white mb-3">تحليل البرمجيات الخبيثة</h5>
+                        <p class="text-secondary mb-4">
+                            فك تشفير وتحليل ملف خبيث. اكتشف كيفية عمله واستخرج التعليمات البرمجية.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <small class="text-white-50"><i class="fas fa-users"></i> 120 حلاً</small>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="startChallenge(3)">
+                                <i class="fas fa-play me-2"></i>ابدأ التحدي
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تحدي 4 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="challenge-card easy">
+                        <span class="badge bg-success mb-3">سهل - 100 نقطة</span>
+                        <h5 class="text-white mb-3">ثغرة XSS</h5>
+                        <p class="text-secondary mb-4">
+                            اكتشف واستغل ثغرة Cross-Site Scripting في تطبيق ويب.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <small class="text-white-50"><i class="fas fa-users"></i> 380 حلاً</small>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="startChallenge(4)">
+                                <i class="fas fa-play me-2"></i>ابدأ التحدي
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تحدي 5 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="challenge-card medium">
+                        <span class="badge bg-warning mb-3">متوسط - 200 نقطة</span>
+                        <h5 class="text-white mb-3">كسر التشفير</h5>
+                        <p class="text-secondary mb-4">
+                            حل شفرة مشفرة باستخدام تقنيات التشفير المختلفة.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <small class="text-white-50"><i class="fas fa-users"></i> 230 حلاً</small>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="startChallenge(5)">
+                                <i class="fas fa-play me-2"></i>ابدأ التحدي
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تحدي 6 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="challenge-card hard">
+                        <span class="badge bg-danger mb-3">صعب - 500 نقطة</span>
+                        <h5 class="text-white mb-3">الثغرة الصفرية</h5>
+                        <p class="text-secondary mb-4">
+                            اكتشاف واستغلال ثغرة غير معروفة في تطبيق ويب.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <small class="text-white-50"><i class="fas fa-users"></i> 45 حلاً</small>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="startChallenge(6)">
+                                <i class="fas fa-play me-2"></i>ابدأ التحدي
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="#all-challenges" class="btn btn-primary px-5">
+                    <i class="fas fa-flag me-2"></i>عرض جميع التحديات
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== أدوات الهاكر ===== -->
+    <section id="tools" class="py-5 bg-dark">
+        <div class="container py-5">
+            <div class="section-title" data-aos="fade-up">
+                <h2 class="neon-text">أدوات الهاكر المساعدة</h2>
+                <p>مجموعة من الأدوات المفيدة للاختبار والتدريب والتحليل</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- أداة 1 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <h5 class="text-white mb-3">مولد كلمات المرور</h5>
+                        <p class="text-secondary mb-4">
+                            إنشاء كلمات مرور قوية وعشوائية بخصائص قابلة للتخصيص.
+                        </p>
+                        <button class="btn btn-outline-primary w-100" onclick="openTool('password-generator')">
+                            <i class="fas fa-external-link-alt me-2"></i>فتح الأداة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- أداة 2 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h5 class="text-white mb-3">محول النصوص</h5>
+                        <p class="text-secondary mb-4">
+                            تحويل النصوص بين Base64, Hex, Binary, MD5, SHA وغيرها.
+                        </p>
+                        <button class="btn btn-outline-success w-100" onclick="openTool('text-converter')">
+                            <i class="fas fa-external-link-alt me-2"></i>فتح الأداة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- أداة 3 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h5 class="text-white mb-3">ماسح الثغرات</h5>
+                        <p class="text-secondary mb-4">
+                            فحص المواقع للثغرات الشائعة مثل SQLi, XSS, LFI وغيرها.
+                        </p>
+                        <button class="btn btn-outline-danger w-100" onclick="openTool('vulnerability-scanner')">
+                            <i class="fas fa-external-link-alt me-2"></i>فتح الأداة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- أداة 4 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h5 class="text-white mb-3">مولد البايلودات</h5>
+                        <p class="text-secondary mb-4">
+                            إنشاء شيفرات استغلال مخصصة لأنظمة مختلفة.
+                        </p>
+                        <button class="btn btn-outline-warning w-100" onclick="openTool('payload-generator')">
+                            <i class="fas fa-external-link-alt me-2"></i>فتح الأداة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- أداة 5 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <h5 class="text-white mb-3">محلل الشبكات</h5>
+                        <p class="text-secondary mb-4">
+                            تحليل حزم الشبكة وعرضها وتحليل البروتوكولات.
+                        </p>
+                        <button class="btn btn-outline-info w-100" onclick="openTool('network-analyzer')">
+                            <i class="fas fa-external-link-alt me-2"></i>فتح الأداة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- أداة 6 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h5 class="text-white mb-3">أداة التشفير</h5>
+                        <p class="text-secondary mb-4">
+                            تشفير وفك تشفير النصوص باستخدام خوارزميات مختلفة.
+                        </p>
+                        <button class="btn btn-outline-secondary w-100" onclick="openTool('encryption-tool')">
+                            <i class="fas fa-external-link-alt me-2"></i>فتح الأداة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== المجتمع ===== -->
+    <section id="community" class="py-5">
+        <div class="container py-5">
+            <div class="section-title" data-aos="fade-up">
+                <h2 class="neon-text">مجتمع الهاكرز</h2>
+                <p>انضم إلى مجتمع المتعلمين والمحترفين وشارك معرفتك</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="cyber-card text-center h-100">
+                        <div class="mb-4">
+                            <i class="fas fa-comments text-primary fa-3x"></i>
+                        </div>
+                        <h4 class="text-white mb-3">منتدى النقاش</h4>
+                        <p class="text-secondary mb-4">
+                            ناقش المشاكل، اسأل الخبراء، وشارك معرفتك مع المجتمع
+                        </p>
+                        <button class="btn btn-outline-primary" onclick="openCommunity('forum')">
+                            انضم للمناقشة
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="cyber-card text-center h-100">
+                        <div class="mb-4">
+                            <i class="fas fa-trophy text-warning fa-3x"></i>
+                        </div>
+                        <h4 class="text-white mb-3">لوحة المتصدرين</h4>
+                        <p class="text-secondary mb-4">
+                            تنافس مع الآخرين وارفع مستواك في تصنيف المتصدرين
+                        </p>
+                        <button class="btn btn-outline-warning" onclick="showLeaderboard()">
+                            شاهد التصنيف
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="cyber-card text-center h-100">
+                        <div class="mb-4">
+                            <i class="fas fa-calendar-check text-success fa-3x"></i>
+                        </div>
+                        <h4 class="text-white mb-3">فعاليات مباشرة</h4>
+                        <p class="text-secondary mb-4">
+                            ورش عمل مباشرة وفعاليات أسبوعية مع المحترفين
+                        </p>
+                        <button class="btn btn-outline-success" onclick="showEvents()">
+                            شاهد الفعاليات
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== الفريق ===== -->
+    <section id="team" class="py-5 bg-dark">
+        <div class="container py-5">
+            <div class="section-title" data-aos="fade-up">
+                <h2 class="neon-text">فريق العمل</h2>
+                <p>التق بأعضاء فريق Hacker XA المحترفين</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="team-card">
+                        <img src="https://ui-avatars.com/api/?name=Ahmed+Ali&background=00ff88&color=000&size=200" 
+                             alt="Ahmed Ali" class="team-img">
+                        <h4 class="text-white mb-2">أحمد علي</h4>
+                        <p class="text-primary mb-3">خبير أمن سيبراني</p>
+                        <p class="text-secondary small">
+                            خبرة 10 سنوات في اختبار الاختراق وتأمين الشبكات
+                        </p>
+                        <div class="d-flex justify-content-center gap-3 mt-3">
+                            <a href="#" class="text-secondary"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-secondary"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-secondary"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="team-card">
+                        <img src="https://ui-avatars.com/api/?name=Sara+Mohamed&background=00ccff&color=000&size=200" 
+                             alt="Sara Mohamed" class="team-img">
+                        <h4 class="text-white mb-2">سارة محمد</h4>
+                        <p class="text-primary mb-3">متخصصة في أمن تطبيقات الويب</p>
+                        <p class="text-secondary small">
+                            متخصصة في اكتشاف وعلاج ثغرات الويب والتطبيقات
+                        </p>
+                        <div class="d-flex justify-content-center gap-3 mt-3">
+                            <a href="#" class="text-secondary"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-secondary"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-secondary"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="team-card">
+                        <img src="https://ui-avatars.com/api/?name=Khaled+Omar&background=ff0055&color=fff&size=200" 
+                             alt="Khaled Omar" class="team-img">
+                        <h4 class="text-white mb-2">خالد عمر</h4>
+                        <p class="text-primary mb-3">خبير في الفورنسك الرقمي</p>
+                        <p class="text-secondary small">
+                            متخصص في تحليل البرمجيات الخبيثة والتحقيق الجنائي الرقمي
+                        </p>
+                        <div class="d-flex justify-content-center gap-3 mt-3">
+                            <a href="#" class="text-secondary"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-secondary"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-secondary"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== الفوتر ===== -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="neon-text mb-4">
+                        <i class="fas fa-shield-alt me-2"></i>HACKER XA
+                    </h4>
+                    <p class="text-secondary">
+                        منصة تعليمية متكاملة للأمن السيبراني والاختراق الأخلاقي. 
+                        نهدف إلى بناء جيل من المحترفين القادرين على حماية الأنظمة الرقمية.
+                    </p>
+                </div>
+                
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 class="text-white mb-4">روابط سريعة</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home" class="text-secondary">الرئيسية</a></li>
+                        <li class="mb-2"><a href="#courses" class="text-secondary">المسارات</a></li>
+                        <li class="mb-2"><a href="#terminal" class="text-secondary">التيرمنال</a></li>
+                        <li class="mb-2"><a href="#challenges" class="text-secondary">التحديات</a></li>
+                        <li class="mb-2"><a href="#tools" class="text-secondary">الأدوات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 mb-4">
+                    <h5 class="text-white mb-4">تواصل معنا</h5>
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-envelope text-primary"></i>
+                            <span class="text-secondary">support@hackerxa.com</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fab fa-telegram text-info"></i>
+                            <span class="text-secondary">@hacker_xa</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fab fa-twitter text-info"></i>
+                            <span class="text-secondary">@hacker_xa</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fab fa-github text-secondary"></i>
+                            <span class="text-secondary">github.com/hacker-xa</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 mb-4">
+                    <h5 class="text-white mb-4">النشرة البريدية</h5>
+                    <p class="text-secondary small mb-3">
+                        اشترك ليصلك كل جديد عن المنصة والتحديثات والدروس الجديدة
+                    </p>
+                    <div class="input-group">
+                        <input type="email" class="form-control form-control-cyber" 
+                               placeholder="بريدك الإلكتروني" id="newsletterEmail">
+                        <button class="btn btn-primary" onclick="subscribeNewsletter()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="border-secondary my-5">
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="text-secondary mb-0">
+                        &copy; 2024 Hacker XA. جميع الحقوق محفوظة.
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex gap-3 justify-content-md-end">
+                        <a href="#" class="text-secondary">شروط الاستخدام</a>
+                        <a href="#" class="text-secondary">سياسة الخصوصية</a>
+                        <a href="#" class="text-secondary">الأخلاقيات</a>
+                        <a href="#" class="text-secondary">توثيق API</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== المودالز ===== -->
+
+    <!-- مودال تسجيل الدخول -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title neon-text">
+                        <i class="fas fa-lock me-2"></i>تسجيل الدخول
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label text-white">البريد الإلكتروني</label>
+                            <input type="email" class="form-control form-control-cyber" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label text-white">كلمة المرور</label>
+                            <input type="password" class="form-control form-control-cyber" required>
+                            <div class="form-text text-end">
+                                <a href="#forgot-password" class="text-primary small">نسيت كلمة المرور؟</a>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">تسجيل الدخول</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p class="text-secondary mb-0">ليس لديك حساب؟ 
+                            <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#registerModal">سجل الآن</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال التسجيل -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title neon-text">
+                        <i class="fas fa-user-plus me-2"></i>إنشاء حساب جديد
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="registerForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white">الاسم الأول</label>
+                                <input type="text" class="form-control form-control-cyber" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-white">اسم العائلة</label>
+                                <input type="text" class="form-control form-control-cyber" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">البريد الإلكتروني</label>
+                            <input type="email" class="form-control form-control-cyber" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">كلمة المرور</label>
+                            <input type="password" class="form-control form-control-cyber" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label text-white">تأكيد كلمة المرور</label>
+                            <input type="password" class="form-control form-control-cyber" required>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">إنشاء حساب</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال الأوامر -->
+    <div class="modal fade" id="commandsModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title neon-text">
+                        <i class="fas fa-terminal me-2"></i>مكتبة الأوامر
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <input type="text" class="form-control form-control-cyber" 
+                               placeholder="ابحث عن أمر..." id="commandSearch">
+                    </div>
+                    <div id="commandsList" class="row g-3">
+                        <!-- سيتم ملؤها جافاسكريبت -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال التحدي -->
+    <div class="modal fade" id="challengeModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title neon-text" id="challengeTitle">تحدي CTF</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="challengeContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال الأداة -->
+    <div class="modal fade" id="toolModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title neon-text" id="toolTitle">أداة الهاكر</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="toolContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال الفيديو -->
+    <div class="modal fade" id="videoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title neon-text">عرض توضيحي</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                title="Demo Video" frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== المكتبات ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/xterm/lib/xterm.js"></script>
+    <script src="https://unpkg.com/xterm-addon-fit/lib/xterm-addon-fit.js"></script>
+    <script src="https://unpkg.com/xterm-addon-web-links/lib/xterm-addon-web-links.js"></script>
+
+    <!-- ===== الجافاسكريبت الرئيسي ===== -->
+    <script>
+        // ===== التهيئة العامة =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // إخفاء شاشة التحميل بعد تأخير
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                }, 500);
+            }, 2000);
+
+            // تهيئة AOS للأنيميشن
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
+
+            // تهيئة التيرمنال
+            initTerminalSystem();
+
+            // تحديث الإحصائيات
+            updateStatistics();
+
+            // إضافة أحداث التنقل السلس
+            setupSmoothScrolling();
+
+            // إعداد الأحداث
+            setupEventHandlers();
+
+            // إعداد المؤثرات
+            setupEffects();
+
+            // تحميل البيانات
+            loadInitialData();
+
+            // إعداد الـ Service Worker للعمل بدون اتصال
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(console.error);
+            }
+        });
+
+        // ===== نظام التيرمنال =====
+        let terminal;
+        let fitAddon;
+        let commandHistory = [];
+        let historyIndex = -1;
+        let currentSession = [];
+        let isRecording = false;
+        let learnedCommands = new Set();
+
+        function initTerminalSystem() {
+            // إنشاء التيرمنال
+            terminal = new Terminal({
+                cursorBlink: true,
+                cursorStyle: 'block',
+                fontSize: 14,
+                fontFamily: "'JetBrains Mono', monospace",
+                theme: {
+                    background: '#000000',
+                    foreground: '#00ff88',
+                    cursor: '#00ff88',
+                    black: '#000000',
+                    red: '#ff0055',
+                    green: '#00ff88',
+                    yellow: '#ffaa00',
+                    blue: '#00ccff',
+                    magenta: '#ff00ff',
+                    cyan: '#00ffff',
+                    white: '#ffffff',
+                    brightBlack: '#666666',
+                    brightRed: '#ff3366',
+                    brightGreen: '#33ff99',
+                    brightYellow: '#ffcc00',
+                    brightBlue: '#66ccff',
+                    brightMagenta: '#ff66ff',
+                    brightCyan: '#66ffff',
+                    brightWhite: '#ffffff'
+                },
+                allowTransparency: true,
+                rows: 25
+            });
+
+            // إضافة الإضافات
+            fitAddon = new FitAddon.FitAddon();
+            terminal.loadAddon(fitAddon);
+            terminal.loadAddon(new WebLinksAddon.WebLinksAddon());
+
+            // فتح التيرمنال
+            terminal.open(document.getElementById('terminal'));
+            fitAddon.fit();
+
+            // رسالة الترحيب
+            showTerminalWelcome();
+
+            // إعداد معالج الأوامر
+            setupTerminalHandlers();
+
+            // تهيئة الأوامر
+            initCommands();
+
+            // تحديث التقدم
+            updateTerminalProgress();
+        }
+
+        function showTerminalWelcome() {
+            const welcomeMessage = `
+\x1b[36m╔═══════════════════════════════════════════════════════╗
+║                  HACKER XA TERMINAL v2.0              ║
+║            Ethical Hacking Training Platform          ║
+╚═══════════════════════════════════════════════════════╝\x1b[0m
+
+\x1b[33mType 'help' to see 200+ available commands
+Type 'ctf' for Capture The Flag challenges
+Type 'tools' for hacking tools
+Type 'about' for platform information\x1b[0m
+
+\x1b[32mroot@hacker-xa:~# \x1b[0m`;
+            
+            terminal.write(welcomeMessage);
+        }
+
+        function setupTerminalHandlers() {
+            // معالج الأوامر
+            terminal.onKey(({ key, domEvent }) => {
+                const printable = !domEvent.altKey && !domEvent.ctrlKey && !domEvent.metaKey;
+                
+                if (domEvent.keyCode === 13) { // Enter
+                    handleCommand();
+                } else if (domEvent.keyCode === 8) { // Backspace
+                    if (terminal.buffer.active.cursorX > 2) {
+                        terminal.write('\b \b');
+                    }
+                } else if (domEvent.keyCode === 38) { // Up arrow
+                    navigateHistory(-1);
+                } else if (domEvent.keyCode === 40) { // Down arrow
+                    navigateHistory(1);
+                } else if (domEvent.keyCode === 9) { // Tab
+                    domEvent.preventDefault();
+                    handleTabComplete();
+                } else if (printable) {
+                    terminal.write(key);
+                }
+            });
+
+            // إعادة الحجم عند تغيير حجم النافذة
+            window.addEventListener('resize', () => {
+                fitAddon.fit();
+            });
+        }
+
+        function handleCommand() {
+            const line = terminal.buffer.active.getLine(terminal.buffer.active.cursorY);
+            const command = line.translateToString(true).replace('root@hacker-xa:~# ', '').trim();
+            
+            if (command) {
+                // حفظ في التاريخ
+                commandHistory.push(command);
+                historyIndex = commandHistory.length;
+                
+                // تسجيل الجلسة
+                if (isRecording) {
+                    currentSession.push({
+                        command,
+                        timestamp: new Date().toISOString()
+                    });
+                }
+                
+                terminal.writeln('');
+                executeTerminalCommand(command);
+            }
+            
+            terminal.write('\r\n\x1b[32mroot@hacker-xa:~# \x1b[0m');
+        }
+
+        function navigateHistory(direction) {
+            if (commandHistory.length === 0) return;
+            
+            historyIndex = Math.max(-1, Math.min(commandHistory.length - 1, historyIndex + direction));
+            
+            // مسح السطر الحالي
+            const line = terminal.buffer.active.getLine(terminal.buffer.active.cursorY);
+            const currentText = line.translateToString(true);
+            for (let i = 0; i < currentText.length; i++) {
+                terminal.write('\b \b');
+            }
+            
+            // كتابة الأمر من التاريخ
+            if (historyIndex >= 0) {
+                terminal.write(commandHistory[historyIndex]);
+            }
+        }
+
+        function handleTabComplete() {
+            const line = terminal.buffer.active.getLine(terminal.buffer.active.cursorY);
+            const text = line.translateToString(true);
+            const parts = text.split(' ');
+            const lastPart = parts[parts.length - 1];
+            
+            if (lastPart) {
+                const matches = Object.keys(terminalCommands).filter(cmd => 
+                    cmd.startsWith(lastPart)
+                );
+                
+                if (matches.length === 1) {
+                    const completion = matches[0].substring(lastPart.length);
+                    terminal.write(completion);
+                } else if (matches.length > 1) {
+                    terminal.write('\r\n');
+                    matches.forEach(match => {
+                        terminal.writeln(`  ${match}`);
+                    });
+                    terminal.write('\r\n' + text);
+                }
+            }
+        }
+
+        // ===== مكتبة الأوامر =====
+        const terminalCommands = {
+            // === الأوامر الأساسية ===
+            'help': {
+                description: 'عرض جميع الأوامر المتاحة',
+                category: 'basic',
+                execute: () => {
+                    const output = `
+\x1b[36m===== HACKER XA TERMINAL - COMMAND REFERENCE =====\x1b[0m
+
+\x1b[32m[الأوامر الأساسية]\x1b[0m
+help     - عرض هذه المساعدة
+clear    - مسح شاشة التيرمنال
+about    - معلومات عن المنصة
+version  - إصدار التيرمنال
+history  - عرض تاريخ الأوامر
+stats    - إحصائيات التيرمنال
+
+\x1b[32m[أوامر لينكس]\x1b[0m
+ls       - عرض محتويات المجلد
+pwd      - عرض المسار الحالي
+whoami   - عرض اسم المستخدم الحالي
+cd       - تغيير المجلد
+cat      - عرض محتوى ملف
+mkdir    - إنشاء مجلد جديد
+rm       - حذف ملفات
+cp       - نسخ ملفات
+mv       - نقل/تغيير اسم الملفات
+chmod    - تغيير صلاحيات الملفات
+find     - البحث عن ملفات
+grep     - البحث في النصوص
+
+\x1b[32m[أوامر الشبكات]\x1b[0m
+ping     - اختبار اتصال الشبكة
+nmap     - مسح الشبكات والمنافذ
+ifconfig - عرض إعدادات الشبكة
+netstat  - عرض إحصائيات الشبكة
+dig      - استعلام DNS
+traceroute - تتبع مسار الشبكة
+ssh      - الاتصال الآمن عن بعد
+wget     - تحميل ملفات من الويب
+curl     - نقل بيانات عبر URL
+
+\x1b[32m[أوامر اختبار الاختراق]\x1b[0m
+sqlmap   - كشف وتنفيذ ثغرات SQL Injection
+nikto    - مسح ثغرات الويب
+wpscan   - مسح ثغرات WordPress
+dirb     - اكتشاف الملفات والمجلدات
+gobuster - اكتشاف مسارات الويب
+hydra    - كسر كلمات المرور
+john     - John the Ripper - كسر التجزئات
+hashcat  - كسر التجزئات المتقدمة
+
+\x1b[32m[أوامر Metasploit]\x1b[0m
+msfconsole - تشغيل MetaSploit Framework
+metasploit - اختصار لـ msfconsole
+search    - البحث عن exploits
+use       - استخدام exploit
+show      - عرض options/payloads
+set       - تعيين options
+exploit   - تنفيذ exploit
+
+\x1b[32m[أوامر الفورنسك]\x1b[0m
+strings  - عرض النصوص القابلة للطباعة في الملف
+binwalk  - تحليل الملفات الثنائية
+xxd      - عرض محتوى الملف بصيغة hex
+foremost - استخراج الملفات
+scalpel  - استخراج الملفات المتقدمة
+
+\x1b[32m[أوامر التشفير]\x1b[0m
+openssl  - أداة التشفير
+base64   - ترميز/فك ترميز base64
+md5sum   - حساب MD5 hash
+sha1sum  - حساب SHA1 hash
+sha256sum - حساب SHA256 hash
+
+\x1b[32m[أوامر خاصة]\x1b[0m
+ctf      - عرض تحديات CTF
+challenges - اختصار لـ ctf
+tools    - عرض أدوات الهاكر
+hack     - محاكاة عملية اختراق (لعبة)
+matrix   - عرض تأثير المصفوفة
+neofetch - عرض معلومات النظام بشكل فني
+train    - بدء جلسة تدريب
+quiz     - اختبار معرفتك
+
+\x1b[33mاكتب اسم الأمر لمزيد من المعلومات.\x1b[0m
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'clear': {
+                description: 'مسح شاشة التيرمنال',
+                category: 'basic',
+                execute: () => {
+                    terminal.clear();
+                    terminal.write('\x1b[32mroot@hacker-xa:~# \x1b[0m');
+                }
+            },
+
+            'about': {
+                description: 'معلومات عن المنصة',
+                category: 'basic',
+                execute: () => {
+                    const output = `
+\x1b[36m===== HACKER XA - ETHICAL HACKING PLATFORM =====\x1b[0m
+
+\x1b[32mالإصدار:\x1b[0m 3.0 Professional
+\x1b[32mالأوامر:\x1b[0m 200+ أمر تيرمنال
+\x1b[32mالتحديات:\x1b[0m 100+ تحدي CTF
+\x1b[32mالمسارات:\x1b[0m 6 مسارات تعليمية
+\x1b[32mالأدوات:\x1b[0m 10+ أداة مساعدة
+
+\x1b[33mالمهمة:\x1b[0m 
+بناء جيل من المحترفين القادرين على حماية الأنظمة الرقمية
+وتأمين الفضاء الإلكتروني العربي.
+
+\x1b[32mالميزات:\x1b[0m
+• تيرمنال تفاعلي مع 200+ أمر
+• تحديات CTF واقعية
+• مسارات تعليمية متكاملة
+• أدوات مساعدة للهاكرز
+• مجتمع تفاعلي
+• شهادات معتمدة
+
+\x1b[36mWebsite: https://hacker-xa.com
+GitHub: https://github.com/hacker-xa
+Contact: admin@hacker-xa.com\x1b[0m
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'version': {
+                description: 'عرض إصدار التيرمنال',
+                category: 'basic',
+                execute: () => {
+                    terminal.writeln('Hacker XA Terminal v2.0');
+                    terminal.writeln('Build: 2024.01.01.pro');
+                    terminal.writeln('Commands: 200+');
+                    terminal.writeln('Author: Hacker XA Team');
+                }
+            },
+
+            'history': {
+                description: 'عرض تاريخ الأوامر',
+                category: 'basic',
+                execute: () => {
+                    if (commandHistory.length === 0) {
+                        terminal.writeln('No command history');
+                    } else {
+                        commandHistory.forEach((cmd, index) => {
+                            terminal.writeln(`${index + 1}. ${cmd}`);
+                        });
+                    }
+                }
+            },
+
+            'stats': {
+                description: 'إحصائيات التيرمنال',
+                category: 'basic',
+                execute: () => {
+                    const stats = `
+\x1b[36m===== TERMINAL STATISTICS =====\x1b[0m
+
+\x1b[32mCommands executed:\x1b[0m ${commandHistory.length}
+\x1b[32mCommands learned:\x1b[0m ${learnedCommands.size}/200
+\x1b[32mSession duration:\x1b[0m ${Math.floor(Math.random() * 60)} minutes
+\x1b[32mRecording:\x1b[0m ${isRecording ? 'ON' : 'OFF'}
+\x1b[32mCurrent directory:\x1b[0m /root/hacker-xa
+
+\x1b[33mProgress:\x1b[0m ${Math.round((learnedCommands.size / 200) * 100)}%
+                    `;
+                    terminal.writeln(stats);
+                }
+            },
+
+            // === أوامر لينكس ===
+            'ls': {
+                description: 'عرض محتويات المجلد',
+                category: 'linux',
+                execute: (args) => {
+                    const output = args.includes('-l') ? `
+total 48
+drwxr-xr-x  2 root root  4096 Jan  1 00:00 .
+drwxr-xr-x  3 root root  4096 Jan  1 00:00 ..
+-rw-r--r--  1 root root   123 Jan  1 00:00 secret.txt
+-rwxr-xr-x  1 root root 20480 Jan  1 00:00 exploit.py
+drwxr-xr-x  2 root root  4096 Jan  1 00:00 tools
+drwxr-xr-x  3 root root  4096 Jan  1 00:00 challenges
+-rw-r--r--  1 root root  1024 Jan  1 00:00 notes.txt
+drwxr-xr-x  2 root root  4096 Jan  1 00:00 downloads
+                    ` : `
+.   ..   secret.txt   exploit.py   tools/   challenges/   notes.txt   downloads/
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'pwd': {
+                description: 'عرض المسار الحالي',
+                category: 'linux',
+                execute: () => {
+                    terminal.writeln('/root/hacker-xa');
+                }
+            },
+
+            'whoami': {
+                description: 'عرض اسم المستخدم الحالي',
+                category: 'linux',
+                execute: () => {
+                    terminal.writeln('root');
+                }
+            },
+
+            'cd': {
+                description: 'تغيير المجلد',
+                category: 'linux',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: cd [directory]');
+                    } else if (args === '..') {
+                        terminal.writeln('Changed to parent directory');
+                    } else if (args === 'tools') {
+                        terminal.writeln('Changed directory to: /root/hacker-xa/tools');
+                    } else if (args === 'challenges') {
+                        terminal.writeln('Changed directory to: /root/hacker-xa/challenges');
+                    } else {
+                        terminal.writeln(`Changed directory to: ${args}`);
+                    }
+                }
+            },
+
+            'cat': {
+                description: 'عرض محتوى ملف',
+                category: 'linux',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: cat [filename]');
+                    } else if (args === 'secret.txt') {
+                        terminal.writeln('\x1b[32mFLAG{H4CK3R_X4_W3LC0M3_2024}\x1b[0m');
+                    } else if (args === 'notes.txt') {
+                        terminal.writeln('Important notes:\n1. Always practice ethical hacking\n2. Keep learning new techniques\n3. Join the community\n4. Complete CTF challenges');
+                    } else {
+                        terminal.writeln(`Displaying ${args}...`);
+                        terminal.writeln('This is sample content for demonstration.');
+                    }
+                }
+            },
+
+            'mkdir': {
+                description: 'إنشاء مجلد جديد',
+                category: 'linux',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: mkdir [directory_name]');
+                    } else {
+                        terminal.writeln(`Created directory: ${args}`);
+                    }
+                }
+            },
+
+            'rm': {
+                description: 'حذف ملفات',
+                category: 'linux',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: rm [filename]');
+                    } else if (args.includes('-r')) {
+                        terminal.writeln('Removed directory recursively');
+                    } else {
+                        terminal.writeln(`Removed: ${args}`);
+                    }
+                }
+            },
+
+            'cp': {
+                description: 'نسخ ملفات',
+                category: 'linux',
+                execute: (args) => {
+                    const parts = args.split(' ');
+                    if (parts.length < 2) {
+                        terminal.writeln('Usage: cp [source] [destination]');
+                    } else {
+                        terminal.writeln(`Copied ${parts[0]} to ${parts[1]}`);
+                    }
+                }
+            },
+
+            'mv': {
+                description: 'نقل/تغيير اسم الملفات',
+                category: 'linux',
+                execute: (args) => {
+                    const parts = args.split(' ');
+                    if (parts.length < 2) {
+                        terminal.writeln('Usage: mv [source] [destination]');
+                    } else {
+                        terminal.writeln(`Moved ${parts[0]} to ${parts[1]}`);
+                    }
+                }
+            },
+
+            'chmod': {
+                description: 'تغيير صلاحيات الملفات',
+                category: 'linux',
+                execute: (args) => {
+                    const parts = args.split(' ');
+                    if (parts.length < 2) {
+                        terminal.writeln('Usage: chmod [permissions] [filename]');
+                    } else {
+                        terminal.writeln(`Changed permissions of ${parts[1]} to ${parts[0]}`);
+                    }
+                }
+            },
+
+            'find': {
+                description: 'البحث عن ملفات',
+                category: 'linux',
+                execute: (args) => {
+                    terminal.writeln(`Searching for: ${args}...`);
+                    terminal.writeln('./tools/exploits/metasploit.rc');
+                    terminal.writeln('./challenges/web/sql-injection/flag.txt');
+                    terminal.writeln('./notes.txt');
+                }
+            },
+
+            'grep': {
+                description: 'البحث في النصوص',
+                category: 'linux',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: grep [pattern] [filename]');
+                    } else {
+                        terminal.writeln(`Searching for pattern: ${args}`);
+                        terminal.writeln('Line 45: password = "secret123"');
+                        terminal.writeln('Line 89: admin_pass = "admin@123"');
+                        terminal.writeln('Line 120: flag{hidden_in_text}');
+                    }
+                }
+            },
+
+            // === أوامر الشبكات ===
+            'ping': {
+                description: 'اختبار اتصال الشبكة',
+                category: 'network',
+                execute: (args) => {
+                    const target = args || '8.8.8.8';
+                    terminal.writeln(`PING ${target} (${target}) 56(84) bytes of data.`);
+                    for (let i = 1; i <= 3; i++) {
+                        const time = (15 + Math.random() * 5).toFixed(1);
+                        terminal.writeln(`64 bytes from ${target}: icmp_seq=${i} ttl=117 time=${time} ms`);
+                    }
+                    terminal.writeln(`\n--- ${target} ping statistics ---`);
+                    terminal.writeln('3 packets transmitted, 3 received, 0% packet loss');
+                }
+            },
+
+            'nmap': {
+                description: 'مسح الشبكات والمنافذ',
+                category: 'network',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: nmap [options] [target]');
+                        terminal.writeln('Examples:');
+                        terminal.writeln('  nmap -sV 192.168.1.1');
+                        terminal.writeln('  nmap -p 1-1000 scanme.nmap.org');
+                        terminal.writeln('  nmap -A -T4 target.com');
+                        return;
+                    }
+                    
+                    if (args.includes('scanme.nmap.org')) {
+                        const output = `
+Starting Nmap 7.80 ( https://nmap.org )
+Nmap scan report for scanme.nmap.org (45.33.32.156)
+Host is up (0.0023s latency).
+PORT     STATE SERVICE     VERSION
+22/tcp   open  ssh         OpenSSH 7.9p1
+80/tcp   open  http        Apache httpd 2.4.41
+443/tcp  open  ssl/http    Apache httpd 2.4.41
+9929/tcp open  nping-echo  Nping echo
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+                        `;
+                        terminal.writeln(output);
+                    } else {
+                        terminal.writeln(`Scanning ${args}...`);
+                        terminal.writeln('PORT     STATE SERVICE');
+                        terminal.writeln('22/tcp   open  ssh');
+                        terminal.writeln('80/tcp   open  http');
+                        terminal.writeln('443/tcp  open  https');
+                        terminal.writeln('3306/tcp open  mysql');
+                        terminal.writeln('8080/tcp open  http-proxy');
+                    }
+                }
+            },
+
+            'ifconfig': {
+                description: 'عرض إعدادات الشبكة',
+                category: 'network',
+                execute: () => {
+                    const output = `
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.1.100  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::215:5dff:fe00:a  prefixlen 64  scopeid 0x20<link>
+        ether 00:15:5d:00:00:0a  txqueuelen 1000  (Ethernet)
+        RX packets 123456  bytes 98765432 (94.1 MiB)
+        TX packets 98765   bytes 12345678 (11.7 MiB)
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'netstat': {
+                description: 'عرض إحصائيات الشبكة',
+                category: 'network',
+                execute: () => {
+                    const output = `
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN
+tcp        0      0 192.168.1.100:22        192.168.1.50:54321      ESTABLISHED
+tcp6       0      0 :::22                   :::*                    LISTEN
+tcp6       0      0 :::80                   :::*                    LISTEN
+
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node   Path
+unix  2      [ ACC ]     STREAM     LISTENING     12345    /var/run/docker.sock
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'dig': {
+                description: 'استعلام DNS',
+                category: 'network',
+                execute: (args) => {
+                    const domain = args || 'google.com';
+                    const output = `
+; <<>> DiG 9.11.3-1ubuntu1.13-Ubuntu <<>> ${domain}
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12345
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;${domain}.			IN	A
+
+;; ANSWER SECTION:
+${domain}.		300	IN	A	142.250.185.174
+
+;; Query time: 23 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8)
+;; WHEN: ${new Date().toLocaleString()}
+;; MSG SIZE  rcvd: 55
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'traceroute': {
+                description: 'تتبع مسار الشبكة',
+                category: 'network',
+                execute: (args) => {
+                    const target = args || 'google.com';
+                    const output = `
+traceroute to ${target} (142.250.185.174), 30 hops max, 60 byte packets
+ 1  192.168.1.1 (192.168.1.1)  1.234 ms  1.456 ms  1.678 ms
+ 2  10.0.0.1 (10.0.0.1)  5.432 ms  6.123 ms  7.890 ms
+ 3  41.205.0.1 (41.205.0.1)  15.678 ms  16.789 ms  17.890 ms
+ 4  197.210.0.1 (197.210.0.1)  25.123 ms  26.456 ms  27.789 ms
+ 5  8.8.8.8 (8.8.8.8)  35.678 ms  36.789 ms  37.890 ms
+ 6  142.250.185.174 (142.250.185.174)  45.123 ms  46.456 ms  47.789 ms
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'ssh': {
+                description: 'الاتصال الآمن عن بعد',
+                category: 'network',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: ssh user@host');
+                    } else {
+                        terminal.writeln(`Connecting to ${args}...`);
+                        terminal.writeln('Permission denied, please try again.');
+                    }
+                }
+            },
+
+            'wget': {
+                description: 'تحميل ملفات من الويب',
+                category: 'network',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: wget [URL]');
+                    } else {
+                        terminal.writeln(`--2024-01-01 12:00:00--  ${args}`);
+                        terminal.writeln('Resolving host...');
+                        terminal.writeln('Connecting to host...');
+                        terminal.writeln('HTTP request sent, awaiting response... 200 OK');
+                        terminal.writeln('Length: 2048000 (2.0M) [application/octet-stream]');
+                        terminal.writeln('Saving to: \'downloaded.file\'');
+                        terminal.writeln('\n100%[========================================>] 2,048,000  2.5M/s  in 0.8s');
+                        terminal.writeln('2024-01-01 12:00:01 (2.5 MB/s) - \'downloaded.file\' saved [2048000/2048000]');
+                    }
+                }
+            },
+
+            'curl': {
+                description: 'نقل بيانات عبر URL',
+                category: 'network',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: curl [options] [URL]');
+                    } else {
+                        terminal.writeln(`Fetching ${args}...`);
+                        terminal.writeln('<html>');
+                        terminal.writeln('<head><title>Test Page</title></head>');
+                        terminal.writeln('<body>');
+                        terminal.writeln('<h1>Welcome to Hacker XA</h1>');
+                        terminal.writeln('<p>This is a test page for demonstration.</p>');
+                        terminal.writeln('</body>');
+                        terminal.writeln('</html>');
+                    }
+                }
+            },
+
+            // === أوامر اختبار الاختراق ===
+            'sqlmap': {
+                description: 'كشف وتنفيذ ثغرات SQL Injection',
+                category: 'pentest',
+                execute: (args) => {
+                    if (!args) {
+                        const help = `
+sqlmap/1.7.12#dev
+Usage: sqlmap [options]
+
+Examples:
+  sqlmap -u "http://test.com?id=1"
+  sqlmap -u "http://test.com?id=1" --dbs
+  sqlmap -u "http://test.com?id=1" -D database --tables
+  sqlmap -u "http://test.com?id=1" -D database -T users --dump
+
+Options:
+  --dbs           Enumerate databases
+  --tables        Enumerate tables
+  --columns       Enumerate columns
+  --dump          Dump table entries
+  --batch         Never ask for user input
+  --level=LEVEL   Level of tests to perform (1-5)
+                        `;
+                        terminal.writeln(help);
+                    } else if (args.includes('--dbs')) {
+                        const output = `
+[*] starting @ 12:00:00 /2024-01-01/
+
+[12:00:00] [INFO] testing connection to the target URL
+[12:00:01] [INFO] checking if the target is protected
+[12:00:02] [INFO] testing if the target URL content is stable
+[12:00:03] [INFO] target URL appears to be dynamic
+[12:00:04] [INFO] heuristic test shows that GET parameter 'id' might be injectable
+[12:00:05] [INFO] testing for SQL injection on GET parameter 'id'
+[12:00:06] [INFO] 'ORDER BY' technique appears to be usable. This should reduce the time
+[12:00:07] [INFO] target URL appears to have 3 columns in query
+[12:00:08] [INFO] GET parameter 'id' is 'Generic UNION query (NULL) - 1 to 20 columns' injectable
+
+available databases [5]:
+[*] information_schema
+[*] mysql
+[*] performance_schema
+[*] testdb
+[*] webapp
+
+[12:00:09] [INFO] fetched data logged to text files under '/root/.sqlmap/output/'
+                        `;
+                        terminal.writeln(output);
+                    } else {
+                        terminal.writeln(`Running sqlmap with: ${args}`);
+                        terminal.writeln('[INFO] Starting SQL injection scan...');
+                    }
+                }
+            },
+
+            'nikto': {
+                description: 'مسح ثغرات الويب',
+                category: 'pentest',
+                execute: (args) => {
+                    const target = args || 'http://test.com';
+                    const output = `
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          127.0.0.1
++ Target Hostname:    test.com
++ Target Port:        80
++ Start Time:         ${new Date().toLocaleString()}
+---------------------------------------------------------------------------
++ Server: Apache/2.4.41 (Ubuntu)
++ Retrieved x-powered-by header: PHP/7.4.3
++ Root page / redirects to: http://test.com/login.php
++ OSVDB-3092: /admin/: This might be interesting...
++ OSVDB-3268: /icons/: Directory indexing found.
++ OSVDB-3233: /phpinfo.php: Contains PHP configuration information
++ OSVDB-3092: /backup/: This might be interesting...
++ 6544 items checked: 0 error(s) and 6 item(s) reported on remote host
++ End Time:           ${new Date(Date.now() + 5000).toLocaleString()} (5 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'wpscan': {
+                description: 'مسح ثغرات WordPress',
+                category: 'pentest',
+                execute: (args) => {
+                    const output = `
+_______________________________________________________________
+        __          _______   _____
+        \\ \\        / /  __ \\ / ____|
+         \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __
+          \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _\` | '_ \\
+           \\  /\\  /  | |     ____) | (__| (_| | | | |
+            \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_|
+
+        WordPress Security Scanner by the WPScan Team
+_______________________________________________________________
+
+[+] URL: http://wordpress.test/
+[+] Started: ${new Date().toLocaleString()}
+
+[+] robots.txt found: http://wordpress.test/robots.txt
+
+[i] The site uses the 'WordPress' stack
+
+[+] WordPress version 5.7 identified (Insecure, released on 2021-03-09).
+
+[i] User(s) Identified:
+
+[+] admin
+ | Found By: Author Posts - Author Pattern (Passive Detection)
+ | Confirmed By:
+ |  Rss Generator (Passive Detection)
+ |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+ |  Login Error Messages (Aggressive Detection)
+
+[!] No WPScan API Token given, as a result vulnerability data has not been output.
+[!] You can get a free API token with 25 daily requests by registering at https://wpscan.com/register
+
+[+] Finished: ${new Date(Date.now() + 10000).toLocaleString()}
+[+] Requests Done: 67
+[+] Cached Requests: 5
+[+] Data Sent: 17.023 KB
+[+] Data Received: 458.452 KB
+[+] Memory used: 198.867 MB
+[+] Elapsed time: 00:00:10
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'dirb': {
+                description: 'اكتشاف الملفات والمجلدات',
+                category: 'pentest',
+                execute: (args) => {
+                    const target = args || 'http://test.com';
+                    const output = `
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: ${new Date().toLocaleString()}
+URL_BASE: ${target}/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+
+-----------------
+
+GENERATED WORDS: 4612                                                          
+
+---- Scanning URL: ${target}/ ----
++ http://test.com/admin (CODE:301|SIZE:324)
++ http://test.com/backup (CODE:200|SIZE:1024)
++ http://test.com/config (CODE:200|SIZE:512)
++ http://test.com/robots.txt (CODE:200|SIZE:111)
++ http://test.com/server-status (CODE:403|SIZE:301)
+
+-----------------
+END_TIME: ${new Date(Date.now() + 3000).toLocaleString()}
+DOWNLOADED: 4612 - FOUND: 5
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'gobuster': {
+                description: 'اكتشاف مسارات الويب',
+                category: 'pentest',
+                execute: (args) => {
+                    const output = `
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Mode         : dir
+[+] Url/Domain   : http://test.com/
+[+] Threads      : 10
+[+] Wordlist     : /usr/share/wordlists/dirb/common.txt
+[+] Status codes : 200,204,301,302,307,401,403
+[+] Timeout      : 10s
+===============================================================
+/admin (Status: 301)
+/backup (Status: 200)
+/config (Status: 200)
+/css (Status: 301)
+/images (Status: 301)
+/js (Status: 301)
+/robots.txt (Status: 200)
+/server-status (Status: 403)
+===============================================================
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'hydra': {
+                description: 'كسر كلمات المرور',
+                category: 'pentest',
+                execute: (args) => {
+                    const output = `
+Hydra v9.1 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes.
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-01-01 12:00:00
+[WARNING] Restorefile (./hydra.restore) from a previous session found, to prevent overwriting, you have 10 seconds to abort...
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 100 login tries (l:1/p:100), ~7 tries per task
+[DATA] attacking ssh://192.168.1.1:22/
+[22][ssh] host: 192.168.1.1   login: admin   password: admin123
+[STATUS] attack finished for 192.168.1.1 (valid pair found)
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-01-01 12:00:45
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'john': {
+                description: 'John the Ripper - كسر التجزئات',
+                category: 'pentest',
+                execute: (args) => {
+                    const output = `
+Using default input encoding: UTF-8
+Loaded 1 password hash (md5crypt, crypt(3) $1$ [MD5 128/128 AVX 4x3])
+Will run 4 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+admin123         (admin)
+1g 0:00:00:03 DONE (2024-01-01 12:00) 0.3333g/s 3413p/s 3413c/s 3413C/s 123456..secret
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'hashcat': {
+                description: 'كسر التجزئات المتقدمة',
+                category: 'pentest',
+                execute: (args) => {
+                    const output = `
+hashcat (v6.1.1) starting...
+
+OpenCL API (OpenCL 1.2 pocl 1.5, None+Asserts, LLVM 9.0.1, RELOC, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
+=============================================================================================================================
+* Device #1: pthread-Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz, 5778/5844 MB (2048 MB allocatable), 12MCU
+
+Minimum password length supported by kernel: 0
+Maximum password length supported by kernel: 256
+
+Hashes: 1 digests; 1 unique digests, 1 unique salts
+Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
+Rules: 1
+
+Applicable optimizers applied:
+* Zero-Byte
+* Single-Hash
+* Single-Salt
+* Slow-Hash-SIMD-LOOP
+
+Watchdog: Temperature abort trigger set to 90c
+
+Host memory required for this attack: 65 MB
+
+Dictionary cache hit:
+* Filename..: rockyou.txt
+* Passwords.: 14344385
+* Bytes.....: 139921507
+* Keyspace..: 14344385
+
+5f4dcc3b5aa765d61d8327deb882cf99:password
+                                                 
+Session..........: hashcat
+Status...........: Cracked
+Hash.Name........: MD5
+Hash.Target......: 5f4dcc3b5aa765d61d8327deb882cf99
+Time.Started.....: Mon Jan  1 12:00:00 2024 (3 secs)
+Time.Estimated...: Mon Jan  1 12:00:03 2024 (0 secs)
+Guess.Base.......: File (rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:  1366.0 kH/s (0.95ms) @ Accel:1024 Loops:1 Thr:1 Vec:8
+Recovered........: 1/1 (100.00%) Digests
+Progress.........: 4096000/14344385 (28.55%)
+Rejected.........: 0/4096000 (0.00%)
+Restore.Point....: 4091904/14344385 (28.53%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidates.#1....: password1 -> passthis
+
+Started: Mon Jan  1 12:00:00 2024
+Stopped: Mon Jan  1 12:00:03 2024
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            // === أوامر Metasploit ===
+            'msfconsole': {
+                description: 'تشغيل MetaSploit Framework',
+                category: 'pentest',
+                execute: () => {
+                    const asciiArt = `
+\x1b[31mMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMM                MMMMMMMMMM
+MMMN                           vMMMMMM
+MMMl   MMMMM             MMMMM  JMMMM
+MMMl   MMMMMMMN       NMMMMMMM  JMMMM
+MMMl   MMMMMMMMMNmmmNMMMMMMMMM  JMMMM
+MMMl   MMMM           MMMMMMMM  JMMMM
+MMMl   MMMM           MMMMMMMM  JMMMM
+MMMl   MMMM           MMMMMMMM  JMMMM
+MMMl   MMMM           MMMMMMMM  JMMMM
+MMMl   MMMM           MMMMMMMM  JMMMM
+MMMl   MMMM           MMMMMMMM  JMMMM
+MMMl   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMm   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMm   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMN   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMm   MMMM           MMMMMMMM  JMMMM
+MMMm   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMM   MMMM           MMMMMMMM  JMMMM
+MMMm   MMMMMMMMMMMMMMMVMMMMMMM  JMMMM
+MMMM   MMMMMMMMMMMMMMMMMMMMMMM  JMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM  JMMMM
+MMMMMMMMMMMM                MMM  JMMMM
+MMMMMMMMM    Metasploit    MMMM  JMMMM
+MMMMMMMMM                MMMMMMM  JMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\x1b[0m
+                    `;
+                    terminal.writeln(asciiArt);
+                    terminal.writeln('\n       =[ \x1b[32mmetasploit v6.0.0-dev\x1b[0m                          ]');
+                    terminal.writeln('+ -- --=[ \x1b[33m2068 exploits - 1122 auxiliary - 352 post\x1b[0m       ]');
+                    terminal.writeln('+ -- --=[ \x1b[33m592 payloads - 45 encoders - 10 nops\x1b[0m            ]');
+                    terminal.writeln('+ -- --=[ \x1b[33m7 evasion\x1b[0m                                       ]');
+                    terminal.writeln('\n\x1b[36mmsf6 > \x1b[0m');
+                }
+            },
+
+            'metasploit': {
+                description: 'اختصار لـ msfconsole',
+                category: 'pentest',
+                execute: () => terminalCommands['msfconsole'].execute()
+            },
+
+            'search': {
+                description: 'البحث عن exploits في Metasploit',
+                category: 'pentest',
+                execute: (args) => {
+                    terminal.writeln(`Searching for: ${args || 'exploits'}...`);
+                    terminal.writeln('\nMatching Modules');
+                    terminal.writeln('================');
+                    terminal.writeln('\n   #  Name                                      Disclosure Date  Rank       Check  Description');
+                    terminal.writeln('   -  ----                                      ---------------  ----       -----  -----------');
+                    terminal.writeln('   0  exploit/multi/http/apache_mod_cgi_bash    2014-09-24       excellent  Yes    Apache mod_cgi Bash Environment Variable Injection (Shellshock)');
+                    terminal.writeln('   1  exploit/multi/http/struts2_content_type   2017-03-07       excellent  Yes    Apache Struts 2 Content-Type Remote Code Execution');
+                    terminal.writeln('   2  exploit/windows/smb/ms17_010_eternalblue  2017-03-14       average    Yes    MS17-010 EternalBlue SMB Remote Windows Kernel Pool Corruption');
+                }
+            },
+
+            // === أوامر الفورنسك ===
+            'strings': {
+                description: 'عرض النصوص القابلة للطباعة في الملف',
+                category: 'forensics',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: strings [filename]');
+                    } else {
+                        terminal.writeln('\x1b[32mFLAG{STR1NGS_4R3_US3FUL_F0R_F0R3NS1CS}\x1b[0m');
+                        terminal.writeln('password=secret123');
+                        terminal.writeln('admin:admin123');
+                        terminal.writeln('secret_key=abc123def456');
+                        terminal.writeln('http://hidden.service:8080');
+                    }
+                }
+            },
+
+            'binwalk': {
+                description: 'تحليل الملفات الثنائية',
+                category: 'forensics',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: binwalk [filename]');
+                    } else {
+                        terminal.writeln('\nDECIMAL       HEXADECIMAL     DESCRIPTION');
+                        terminal.writeln('--------------------------------------------------------------------------------');
+                        terminal.writeln('0             0x0             PNG image, 1920 x 1080, 8-bit/color RGB, non-interlaced');
+                        terminal.writeln('12345         0x3039          Zip archive data, at least v2.0 to extract, compressed size: 2048, uncompressed size: 4096, name: "secret.txt"');
+                        terminal.writeln('54321         0xD431          ASCII text, with no line terminators');
+                        terminal.writeln('65536         0x10000         ELF, 64-bit LSB executable, x86-64, version 1 (SYSV)');
+                    }
+                }
+            },
+
+            'xxd': {
+                description: 'عرض محتوى الملف بصيغة hex',
+                category: 'forensics',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: xxd [filename]');
+                    } else {
+                        terminal.writeln('00000000: 464c 4147 7b48 3338 5f44 554d 505f 3132  FLAG{H38_DUMP_12');
+                        terminal.writeln('00000010: 3334 7d0a 5468 6973 2069 7320 6120 7365  34}.This is a se');
+                        terminal.writeln('00000020: 6372 6574 2066 696c 652e 0a70 6173 7377  cret file..passw');
+                        terminal.writeln('00000030: 6f72 643d 7365 6372 6574 3132 330a       ord=secret123.');
+                    }
+                }
+            },
+
+            'foremost': {
+                description: 'استخراج الملفات',
+                category: 'forensics',
+                execute: (args) => {
+                    terminal.writeln('Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus');
+                    terminal.writeln('Audit File');
+                    terminal.writeln('');
+                    terminal.writeln('Foremost started at Mon Jan  1 12:00:00 2024');
+                    terminal.writeln('Invocation: foremost -i evidence.img');
+                    terminal.writeln('Output directory: /root/output');
+                    terminal.writeln('Configuration file: /etc/foremost.conf');
+                    terminal.writeln('');
+                    terminal.writeln('File: evidence.img');
+                    terminal.writeln('Start: Mon Jan  1 12:00:00 2024');
+                    terminal.writeln('Length: 100 MB (104857600 bytes)');
+                    terminal.writeln('');
+                    terminal.writeln('Num      Name (bs=512)         Size      File Type     Comment');
+                    terminal.writeln('');
+                    terminal.writeln('0:      00000000.png         1024 KB    PNG           (1920x1080)');
+                    terminal.writeln('1:      00002048.zip          512 KB    ZIP           (compressed)');
+                    terminal.writeln('2:      00003072.txt           64 KB    ASCII');
+                    terminal.writeln('');
+                    terminal.writeln('Finish: Mon Jan  1 12:00:05 2024');
+                    terminal.writeln('');
+                    terminal.writeln('3 FILES EXTRACTED');
+                    terminal.writeln('');
+                    terminal.writeln('png:= 1');
+                    terminal.writeln('zip:= 1');
+                    terminal.writeln('txt:= 1');
+                }
+            },
+
+            // === أوامر التشفير ===
+            'openssl': {
+                description: 'أداة التشفير',
+                category: 'crypto',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: openssl [command] [options]');
+                        terminal.writeln('Commands:');
+                        terminal.writeln('  enc       - Encryption/Decryption');
+                        terminal.writeln('  genrsa    - Generate RSA private key');
+                        terminal.writeln('  rsa       - RSA key processing');
+                        terminal.writeln('  req       - PKCS#10 certificate request');
+                        terminal.writeln('  x509      - X.509 certificate processing');
+                    } else if (args.includes('enc')) {
+                        terminal.writeln('enter aes-256-cbc encryption password:');
+                        terminal.writeln('Verifying - enter aes-256-cbc encryption password:');
+                        terminal.writeln('U2FsdGVkX1+WvHq/8L3X7Q==');
+                    }
+                }
+            },
+
+            'base64': {
+                description: 'ترميز/فك ترميز base64',
+                category: 'crypto',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: base64 [options] [file]');
+                        terminal.writeln('  -d, --decode   decode data');
+                        terminal.writeln('  -i, --ignore   ignore non-alphabet characters');
+                        terminal.writeln('  -w, --wrap     wrap encoded lines after COLS character (default 76)');
+                    } else if (args.includes('-d')) {
+                        const text = args.replace('-d', '').trim();
+                        if (text === 'RkxBR3tCQVNENjRfSVNfQ09PTF9IRVJFfQ==') {
+                            terminal.writeln('FLAG{BASE64_IS_COOL_HERE}');
+                        } else {
+                            terminal.writeln('Invalid base64 string');
+                        }
+                    }
+                }
+            },
+
+            'md5sum': {
+                description: 'حساب MD5 hash',
+                category: 'crypto',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: md5sum [file]');
+                    } else {
+                        terminal.writeln('5d41402abc4b2a76b9719d911017c592  test.txt');
+                    }
+                }
+            },
+
+            'sha1sum': {
+                description: 'حساب SHA1 hash',
+                category: 'crypto',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: sha1sum [file]');
+                    } else {
+                        terminal.writeln('aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d  test.txt');
+                    }
+                }
+            },
+
+            'sha256sum': {
+                description: 'حساب SHA256 hash',
+                category: 'crypto',
+                execute: (args) => {
+                    if (!args) {
+                        terminal.writeln('Usage: sha256sum [file]');
+                    } else {
+                        terminal.writeln('2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824  test.txt');
+                    }
+                }
+            },
+
+            // === أوامر خاصة ===
+            'ctf': {
+                description: 'عرض تحديات CTF',
+                category: 'special',
+                execute: () => {
+                    const output = `
+\x1b[36m===== HACKER XA CTF CHALLENGES =====\x1b[0m
+
+\x1b[32m[Web Challenges]\x1b[0m
+1. SQL Injection        (Easy)     - Find the flag in the database
+2. XSS Challenge        (Easy)     - Execute JavaScript on the page
+3. File Upload          (Medium)   - Upload a malicious file
+4. Directory Traversal  (Medium)   - Access restricted files
+5. Command Injection    (Hard)     - Execute system commands
+
+\x1b[32m[Crypto Challenges]\x1b[0m
+6. Base64 Decode        (Easy)     - Decode the hidden message
+7. Caesar Cipher        (Easy)     - Break the classic cipher
+8. RSA Challenge        (Medium)   - Crack the RSA encryption
+9. AES Challenge        (Hard)     - Decrypt AES encrypted file
+
+\x1b[32m[Forensics Challenges]\x1b[0m
+10. Memory Analysis     (Medium)   - Analyze memory dump
+11. Network Analysis    (Medium)   - Analyze network capture
+12. Steganography       (Hard)     - Find hidden data in image
+13. Malware Analysis    (Hard)     - Analyze malicious file
+
+\x1b[32m[Reverse Engineering]\x1b[0m
+14. Crackme 1           (Easy)     - Simple crackme challenge
+15. Crackme 2           (Medium)   - Intermediate reverse engineering
+16. Packed Binary       (Hard)     - Unpack and analyze binary
+
+\x1b[33mTo start a challenge, type: solve [challenge_number]\x1b[0m
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'challenges': {
+                description: 'اختصار لـ ctf',
+                category: 'special',
+                execute: () => terminalCommands['ctf'].execute()
+            },
+
+            'tools': {
+                description: 'عرض أدوات الهاكر',
+                category: 'special',
+                execute: () => {
+                    const output = `
+\x1b[36m===== HACKER XA TOOLS =====\x1b[0m
+
+\x1b[32m[Password Tools]\x1b[0m
+• Password Generator    - Generate strong passwords
+• Hash Cracker          - Crack password hashes
+• Password Analyzer     - Analyze password strength
+
+\x1b[32m[Encoding Tools]\x1b[0m
+• Base64 Encoder/Decoder
+• URL Encoder/Decoder
+• Hex Encoder/Decoder
+• Binary Converter
+
+\x1b[32m[Network Tools]\x1b[0m
+• Port Scanner          - Scan open ports
+• Subdomain Finder      - Find subdomains
+• WHOIS Lookup          - Domain information
+• IP Geolocation        - Locate IP address
+
+\x1b[32m[Web Tools]\x1b[0m
+• SQL Injection Tester
+• XSS Scanner
+• Header Analyzer
+• SSL Checker
+
+\x1b[32m[Crypto Tools]\x1b[0m
+• RSA Key Generator
+• AES Encrypt/Decrypt
+• Hash Generator
+• Certificate Generator
+
+\x1b[33mTo open a tool, type: tool [tool_name]\x1b[0m
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'hack': {
+                description: 'محاكاة عملية اختراق (لعبة)',
+                category: 'special',
+                execute: () => {
+                    terminal.writeln('\x1b[31m[*] Initializing hack sequence...\x1b[0m');
+                    
+                    const steps = [
+                        { delay: 500, text: '\x1b[33m[+] Scanning target network...\x1b[0m' },
+                        { delay: 1000, text: '\x1b[32m[✓] Network scan completed\x1b[0m' },
+                        { delay: 1500, text: '\x1b[33m[+] Identifying open ports...\x1b[0m' },
+                        { delay: 2000, text: '\x1b[32m[✓] Port 22 (SSH), 80 (HTTP), 443 (HTTPS) open\x1b[0m' },
+                        { delay: 2500, text: '\x1b[33m[+] Scanning for vulnerabilities...\x1b[0m' },
+                        { delay: 3000, text: '\x1b[32m[✓] SQL Injection vulnerability found\x1b[0m' },
+                        { delay: 3500, text: '\x1b[33m[+] Exploiting vulnerability...\x1b[0m' },
+                        { delay: 4000, text: '\x1b[32m[✓] Vulnerability exploited successfully\x1b[0m' },
+                        { delay: 4500, text: '\x1b[33m[+] Gaining shell access...\x1b[0m' },
+                        { delay: 5000, text: '\x1b[32m[✓] Shell access obtained\x1b[0m' },
+                        { delay: 5500, text: '\x1b[33m[+] Escalating privileges...\x1b[0m' },
+                        { delay: 6000, text: '\x1b[32m[✓] Root access achieved\x1b[0m' },
+                        { delay: 6500, text: '\x1b[33m[+] Installing backdoor...\x1b[0m' },
+                        { delay: 7000, text: '\x1b[32m[✓] Backdoor installed\x1b[0m' },
+                        { delay: 7500, text: '\x1b[33m[+] Cleaning logs...\x1b[0m' },
+                        { delay: 8000, text: '\x1b[32m[✓] Logs cleaned\x1b[0m' },
+                        { delay: 8500, text: '\x1b[36m[SUCCESS] System compromised!\x1b[0m' },
+                        { delay: 9000, text: '\x1b[35m[FLAG] H4CK3R_X4_S1MUL4T10N_C0MPL3T3\x1b[0m' }
+                    ];
+
+                    steps.forEach(step => {
+                        setTimeout(() => {
+                            terminal.writeln(step.text);
+                        }, step.delay);
+                    });
+                }
+            },
+
+            'matrix': {
+                description: 'عرض تأثير المصفوزة',
+                category: 'special',
+                execute: () => {
+                    terminal.writeln('\x1b[32mEntering the Matrix...\x1b[0m');
+                    for (let i = 0; i < 20; i++) {
+                        setTimeout(() => {
+                            let line = '';
+                            for (let j = 0; j < 60; j++) {
+                                line += Math.random() > 0.5 ? '0' : '1';
+                            }
+                            terminal.writeln(line);
+                        }, i * 100);
+                    }
+                }
+            },
+
+            'neofetch': {
+                description: 'عرض معلومات النظام بشكل فني',
+                category: 'special',
+                execute: () => {
+                    const output = `
+\x1b[32m       __  __     \x1b[31m ____  _  __\x1b[0m
+\x1b[32m      / / / /__  \x1b[31m / __ \\/ |/ /\x1b[0m
+\x1b[32m     / /_/ / _ \\\x1b[31m / /_/ /   / \x1b[0m
+\x1b[32m    / __  /  __/\x1b[31m / ____/   |  \x1b[0m
+\x1b[32m   /_/ /_/\\___/\x1b[31m /_/   /_/|_| \x1b[0m
+
+\x1b[36mOS: \x1b[0mHacker XA Linux
+\x1b[36mHost: \x1b[0mhacker-xa-terminal
+\x1b[36mKernel: \x1b[0m5.10.0-kali3-amd64
+\x1b[36mUptime: \x1b[0m1 day, 1:23:45
+\x1b[36mShell: \x1b[0mxterm 5.3.0
+\x1b[36mTerminal: \x1b[0mHacker XA Pro
+\x1b[36mCPU: \x1b[0mIntel i7-10750H (12) @ 5.00GHz
+\x1b[36mMemory: \x1b[0m7842MiB / 16384MiB
+                    `;
+                    terminal.writeln(output);
+                }
+            },
+
+            'train': {
+                description: 'بدء جلسة تدريب',
+                category: 'special',
+                execute: () => {
+                    terminal.writeln('\x1b[36m===== TRAINING SESSION =====\x1b[0m');
+                    terminal.writeln('\x1b[33mWelcome to Hacker XA Training Mode!\x1b[0m');
+                    terminal.writeln('');
+                    terminal.writeln('Available training modules:');
+                    terminal.writeln('1. Linux Basics');
+                    terminal.writeln('2. Network Fundamentals');
+                    terminal.writeln('3. Web Application Security');
+                    terminal.writeln('4. Cryptography Basics');
+                    terminal.writeln('5. Forensics Introduction');
+                    terminal.writeln('');
+                    terminal.writeln('Type: train [module_number] to start');
+                }
+            },
+
+            'quiz': {
+                description: 'اختبار معرفتك',
+                category: 'special',
+                execute: () => {
+                    terminal.writeln('\x1b[36m===== SECURITY QUIZ =====\x1b[0m');
+                    terminal.writeln('\x1b[33mTest your cybersecurity knowledge!\x1b[0m');
+                    terminal.writeln('');
+                    terminal.writeln('Quiz categories:');
+                    terminal.writeln('1. General Security');
+                    terminal.writeln('2. Network Security');
+                    terminal.writeln('3. Web Security');
+                    terminal.writeln('4. Cryptography');
+                    terminal.writeln('5. Forensics');
+                    terminal.writeln('');
+                    terminal.writeln('Type: quiz [category_number] to start');
+                }
+            }
+        };
+
+        // تهيئة الأوامر
+        function initCommands() {
+            // إضافة بعض الأوامر المكتسبة مسبقاً
+            markCommandAsLearned('help');
+            markCommandAsLearned('clear');
+            markCommandAsLearned('about');
+            markCommandAsLearned('version');
+        }
+
+        function executeTerminalCommand(fullCommand) {
+            const [command, ...argsArray] = fullCommand.split(' ');
+            const args = argsArray.join(' ');
+            
+            if (terminalCommands[command]) {
+                if (!learnedCommands.has(command)) {
+                    markCommandAsLearned(command);
+                }
+                try {
+                    terminalCommands[command].execute(args);
+                } catch (error) {
+                    terminal.writeln(`\x1b[31mError executing command: ${error.message}\x1b[0m`);
+                }
+            } else {
+                terminal.writeln(`\x1b[31mCommand not found: ${command}\x1b[0m`);
+                terminal.writeln('Type \x1b[33mhelp\x1b[0m to see available commands');
+            }
+        }
+
+        function markCommandAsLearned(command) {
+            learnedCommands.add(command);
+            updateTerminalProgress();
+        }
+
+        function updateTerminalProgress() {
+            const progress = (learnedCommands.size / Object.keys(terminalCommands).length) * 100;
+            document.getElementById('terminalProgress').style.width = `${progress}%`;
+            document.getElementById('commandsCompleted').textContent = learnedCommands.size;
+            
+            // تحديث الإنجازات
+            updateAchievements();
+        }
+
+        function updateAchievements() {
+            const achievementsContainer = document.getElementById('achievements');
+            if (!achievementsContainer) return;
+            
+            let achievementsHTML = '';
+            const count = learnedCommands.size;
+            
+            if (count >= 5) {
+                achievementsHTML += '<span class="badge bg-dark border border-success me-2 mb-2"><i class="fas fa-terminal me-1"></i> مبتدئ</span>';
+            }
+            if (count >= 20) {
+                achievementsHTML += '<span class="badge bg-dark border border-primary me-2 mb-2"><i class="fas fa-star me-1"></i> متقدم</span>';
+            }
+            if (count >= 50) {
+                achievementsHTML += '<span class="badge bg-dark border border-warning me-2 mb-2"><i class="fas fa-crown me-1"></i> خبير</span>';
+            }
+            if (count >= 100) {
+                achievementsHTML += '<span class="badge bg-dark border border-danger me-2 mb-2"><i class="fas fa-fire me-1"></i> سيد</span>';
+            }
+            
+            achievementsContainer.innerHTML = achievementsHTML;
+        }
+
+        // ===== وظائف التيرمنال =====
+        window.clearTerminal = function() {
+            terminal.clear();
+            terminal.write('\x1b[32mroot@hacker-xa:~# \x1b[0m');
+        };
+
+        window.saveTerminal = function() {
+            const session = {
+                timestamp: new Date().toISOString(),
+                commands: currentSession,
+                history: commandHistory,
+                learnedCommands: Array.from(learnedCommands)
+            };
+            localStorage.setItem('terminal_session', JSON.stringify(session));
+            showNotification('تم حفظ جلسة التيرمنال', 'success');
+        };
+
+        window.closeTerminal = function() {
+            showNotification('تم إغلاق التيرمنال', 'info');
+        };
+
+        window.minimizeTerminal = function() {
+            showNotification('تم تصغير التيرمنال', 'info');
+        };
+
+        window.maximizeTerminal = function() {
+            showNotification('تم تكبير التيرمنال', 'info');
+        };
+
+        window.showHelp = function() {
+            executeTerminalCommand('help');
+        };
+
+        window.runCommand = function(command) {
+            executeTerminalCommand(command);
+        };
+
+        window.filterCommands = function(category) {
+            const modal = new bootstrap.Modal(document.getElementById('commandsModal'));
+            const container = document.getElementById('commandsList');
+            
+            let html = '';
+            const commands = Object.entries(terminalCommands)
+                .filter(([_, cmd]) => cmd.category === category);
+            
+            commands.forEach(([name, cmd]) => {
+                const isLearned = learnedCommands.has(name);
+                html += `
+                <div class="col-md-6">
+                    <div class="cyber-card p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="${isLearned ? 'text-success' : 'text-white'} mb-1">${name}</h6>
+                                <p class="text-secondary small mb-2">${cmd.description}</p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                ${isLearned ? '<span class="badge bg-success">مكتسب</span>' : ''}
+                                <button class="btn btn-sm btn-outline-primary" onclick="runCommand('${name}')">
+                                    تشغيل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            
+            container.innerHTML = html;
+            modal.show();
+        };
+
+        window.showCommandCategory = function(category) {
+            filterCommands(category);
+        };
+
+        // ===== تحديث الإحصائيات =====
+        function updateStatistics() {
+            // تأثير العدادات
+            const counters = document.querySelectorAll('[data-count]');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                let current = 0;
+                const increment = target / 100;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.ceil(current);
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // ===== التنقل السلس =====
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#' || href === '#!') return;
+                    
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // تحديث الرابط النشط في النافبار
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // ===== إعداد الأحداث =====
+        function setupEventHandlers() {
+            // نموذج تسجيل الدخول
+            document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('تم تسجيل الدخول بنجاح', 'success');
+                bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+            });
+
+            // نموذج التسجيل
+            document.getElementById('registerForm')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('تم إنشاء الحساب بنجاح', 'success');
+                bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide();
+            });
+
+            // البحث في الأوامر
+            document.getElementById('commandSearch')?.addEventListener('input', function(e) {
+                const searchTerm = this.value.toLowerCase();
+                const commands = document.querySelectorAll('#commandsList .cyber-card');
+                
+                commands.forEach(card => {
+                    const commandName = card.querySelector('h6').textContent.toLowerCase();
+                    const commandDesc = card.querySelector('p').textContent.toLowerCase();
+                    
+                    if (commandName.includes(searchTerm) || commandDesc.includes(searchTerm)) {
+                        card.parentElement.style.display = 'block';
+                    } else {
+                        card.parentElement.style.display = 'none';
+                    }
+                });
+            });
+
+            // تسجيل الخروج
+            document.getElementById('logoutBtn')?.addEventListener('click', function() {
+                showNotification('تم تسجيل الخروج', 'info');
+            });
+        }
+
+        // ===== المؤثرات =====
+        function setupEffects() {
+            // تأثير الكورسور في التيرمنال
+            setInterval(() => {
+                const cursor = document.querySelector('.cursor');
+                if (cursor) {
+                    cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+                }
+            }, 500);
+
+            // تأثير رفع الكروت عند المرور
+            document.querySelectorAll('.cyber-card, .challenge-card, .tool-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+
+            // تأثير النافبار عند التمرير
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 100) {
+                    navbar.style.padding = '10px 0';
+                    navbar.style.background = 'rgba(10, 10, 15, 0.98)';
+                } else {
+                    navbar.style.padding = '15px 0';
+                    navbar.style.background = 'rgba(10, 10, 15, 0.98)';
+                }
+            });
+        }
+
+        // ===== تحميل البيانات الأولية =====
+        function loadInitialData() {
+            // يمكنك تحميل بيانات إضافية هنا
+            setTimeout(() => {
+                showNotification('مرحباً بك في Hacker XA!', 'info');
+            }, 3000);
+        }
+
+        // ===== الوظائف العامة =====
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notification-area');
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} alert-dismissible fade show`;
+            notification.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+            `;
+            container.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        window.showDemoVideo = function() {
+            const modal = new bootstrap.Modal(document.getElementById('videoModal'));
+            modal.show();
+        };
+
+        window.startCourse = function(courseId) {
+            showNotification(`بدأت الدورة التدريبية #${courseId}`, 'success');
+        };
+
+        window.startChallenge = function(challengeId) {
+            const modal = new bootstrap.Modal(document.getElementById('challengeModal'));
+            const content = document.getElementById('challengeContent');
+            const title = document.getElementById('challengeTitle');
+            
+            const challenges = {
+                1: {
+                    title: 'ثغرة SQL Injection',
+                    content: `
+                        <h4 class="text-white mb-3">التحدي: اكتشاف ثغرة SQL Injection</h4>
+                        <p class="text-secondary mb-4">
+                            في هذا التحدي، ستحتاج إلى اكتشاف واستغلال ثغرة SQL Injection في تطبيق ويب.
+                        </p>
+                        <div class="code-block mb-4">
+                            http://challenge.hacker-xa.com/product.php?id=1
+                        </div>
+                        <h5 class="text-warning mb-3">التعليمات:</h5>
+                        <ol class="text-secondary mb-4">
+                            <li>اختبر حقل ID للبحث عن ثغرة SQL Injection</li>
+                            <li>استخدم علامات الاقتباس والنقطتين للاختبار</li>
+                            <li>استخرج قائمة قواعد البيانات</li>
+                            <li>ابحث عن جدول يحتوي على العلم (flag)</li>
+                            <li>استخرج العلم من الجدول</li>
+                        </ol>
+                        <button class="btn btn-primary" onclick="startCTFChallenge(1)">
+                            <i class="fas fa-play me-2"></i>بدء التحدي
+                        </button>
+                    `
+                },
+                2: {
+                    title: 'تحليل الشبكات',
+                    content: `
+                        <h4 class="text-white mb-3">التحدي: تحليل حزمة شبكة</h4>
+                        <p class="text-secondary mb-4">
+                            قم بتحليل ملف حزمة شبكة (PCAP) لاكتشاف المعلومات المخفية.
+                        </p>
+                        <div class="code-block mb-4">
+                            تحميل ملف: <a href="#" class="text-primary">network_capture.pcap</a>
+                        </div>
+                        <h5 class="text-warning mb-3">التعليمات:</h5>
+                        <ol class="text-secondary mb-4">
+                            <li>افتح ملف PCAP باستخدام Wireshark</li>
+                            <li>ابحث عن حركة HTTP غير العادية</li>
+                            <li>تتبع محادثة TCP</li>
+                            <li>ابحث عن الملفات المنقولة</li>
+                            <li>استخرج العلم من البيانات</li>
+                        </ol>
+                        <button class="btn btn-primary" onclick="startCTFChallenge(2)">
+                            <i class="fas fa-play me-2"></i>بدء التحدي
+                        </button>
+                    `
+                }
+            };
+            
+            if (challenges[challengeId]) {
+                title.textContent = challenges[challengeId].title;
+                content.innerHTML = challenges[challengeId].content;
+                modal.show();
+            } else {
+                showNotification('التحدي غير موجود', 'danger');
+            }
+        };
+
+        window.openTool = function(toolName) {
+            const modal = new bootstrap.Modal(document.getElementById('toolModal'));
+            const content = document.getElementById('toolContent');
+            const title = document.getElementById('toolTitle');
+            
+            const tools = {
+                'password-generator': {
+                    title: 'مولد كلمات المرور',
+                    content: `
+                        <h4 class="text-white mb-3">مولد كلمات مرور قوية</h4>
+                        <div class="mb-4">
+                            <label class="form-label text-white">طول كلمة المرور:</label>
+                            <input type="range" class="form-range" min="8" max="32" value="16" id="passwordLength">
+                            <span class="text-white" id="lengthValue">16</span>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label text-white">إعدادات:</label>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="uppercase" checked>
+                                <label class="form-check-label text-white" for="uppercase">أحرف كبيرة (A-Z)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="lowercase" checked>
+                                <label class="form-check-label text-white" for="lowercase">أحرف صغيرة (a-z)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="numbers" checked>
+                                <label class="form-check-label text-white" for="numbers">أرقام (0-9)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="symbols">
+                                <label class="form-check-label text-white" for="symbols">رموز (!@#$%^&*)</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mb-4" onclick="generatePassword()">
+                            <i class="fas fa-key me-2"></i>إنشاء كلمة مرور
+                        </button>
+                        <div class="code-block" id="passwordResult">
+                            اضغط على الزر لإنشاء كلمة مرور
+                        </div>
+                    `
+                },
+                'text-converter': {
+                    title: 'محول النصوص',
+                    content: `
+                        <h4 class="text-white mb-3">تحويل النصوص بين التنسيقات</h4>
+                        <div class="mb-3">
+                            <label class="form-label text-white">النص المدخل:</label>
+                            <textarea class="form-control form-control-cyber" rows="4" id="inputText">Hello Hacker XA!</textarea>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label text-white">من:</label>
+                                <select class="form-select form-control-cyber" id="fromFormat">
+                                    <option value="text">نص عادي</option>
+                                    <option value="base64">Base64</option>
+                                    <option value="hex">Hexadecimal</option>
+                                    <option value="binary">Binary</option>
+                                    <option value="url">URL Encoding</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-white">إلى:</label>
+                                <select class="form-select form-control-cyber" id="toFormat">
+                                    <option value="text">نص عادي</option>
+                                    <option value="base64">Base64</option>
+                                    <option value="hex">Hexadecimal</option>
+                                    <option value="binary">Binary</option>
+                                    <option value="url">URL Encoding</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mb-4" onclick="convertText()">
+                            <i class="fas fa-exchange-alt me-2"></i>تحويل
+                        </button>
+                        <div class="mb-3">
+                            <label class="form-label text-white">النتيجة:</label>
+                            <textarea class="form-control form-control-cyber" rows="4" id="outputText" readonly></textarea>
+                        </div>
+                    `
+                }
+            };
+            
+            if (tools[toolName]) {
+                title.textContent = tools[toolName].title;
+                content.innerHTML = tools[toolName].content;
+                
+                // إعداد أحداث الأدوات
+                if (toolName === 'password-generator') {
+                    document.getElementById('passwordLength').addEventListener('input', function() {
+                        document.getElementById('lengthValue').textContent = this.value;
+                    });
+                }
+                
+                modal.show();
+            } else {
+                showNotification('الأداة غير متوفرة', 'warning');
+            }
+        };
+
+        window.openCommunity = function(type) {
+            showNotification('قريباً: ميزة المجتمع قيد التطوير', 'info');
+        };
+
+        window.showLeaderboard = function() {
+            showNotification('قريباً: لوحة المتصدرين', 'info');
+        };
+
+        window.showEvents = function() {
+            showNotification('قريباً: الفعاليات القادمة', 'info');
+        };
+
+        window.subscribeNewsletter = function() {
+            const email = document.getElementById('newsletterEmail').value;
+            if (email && email.includes('@')) {
+                showNotification('تم الاشتراك في النشرة البريدية بنجاح', 'success');
+                document.getElementById('newsletterEmail').value = '';
+            } else {
+                showNotification('الرجاء إدخال بريد إلكتروني صحيح', 'danger');
+            }
+        };
+
+        window.startCTFChallenge = function(challengeId) {
+            showNotification(`بدأ تحدي CTF #${challengeId}`, 'success');
+            bootstrap.Modal.getInstance(document.getElementById('challengeModal')).hide();
+        };
+
+        window.generatePassword = function() {
+            const length = parseInt(document.getElementById('passwordLength').value);
+            const uppercase = document.getElementById('uppercase').checked;
+            const lowercase = document.getElementById('lowercase').checked;
+            const numbers = document.getElementById('numbers').checked;
+            const symbols = document.getElementById('symbols').checked;
+            
+            let chars = '';
+            if (uppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (lowercase) chars += 'abcdefghijklmnopqrstuvwxyz';
+            if (numbers) chars += '0123456789';
+            if (symbols) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            
+            if (chars === '') {
+                document.getElementById('passwordResult').textContent = 'يرجى اختيار نوع واحد على الأقل';
+                return;
+            }
+            
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            document.getElementById('passwordResult').textContent = password;
+        };
+
+        window.convertText = function() {
+            const input = document.getElementById('inputText').value;
+            const fromFormat = document.getElementById('fromFormat').value;
+            const toFormat = document.getElementById('toFormat').value;
+            
+            let decoded;
+            try {
+                // التحويل من التنسيق المحدد
+                switch (fromFormat) {
+                    case 'base64':
+                        decoded = atob(input);
+                        break;
+                    case 'hex':
+                        decoded = hexToString(input);
+                        break;
+                    case 'binary':
+                        decoded = binaryToString(input);
+                        break;
+                    case 'url':
+                        decoded = decodeURIComponent(input);
+                        break;
+                    default:
+                        decoded = input;
+                }
+                
+                // التحويل إلى التنسيق المطلوب
+                let result;
+                switch (toFormat) {
+                    case 'base64':
+                        result = btoa(decoded);
+                        break;
+                    case 'hex':
+                        result = stringToHex(decoded);
+                        break;
+                    case 'binary':
+                        result = stringToBinary(decoded);
+                        break;
+                    case 'url':
+                        result = encodeURIComponent(decoded);
+                        break;
+                    default:
+                        result = decoded;
+                }
+                
+                document.getElementById('outputText').value = result;
+            } catch (error) {
+                document.getElementById('outputText').value = 'خطأ في التحويل: ' + error.message;
+            }
+        };
+
+        // دوال مساعدة للتحويل
+        function stringToHex(str) {
+            return str.split('').map(c => c.charCodeAt(0).toString(16).padStart(2, '0')).join('');
+        }
+
+        function hexToString(hex) {
+            return hex.match(/.{1,2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
+        }
+
+        function stringToBinary(str) {
+            return str.split('').map(c => c.charCodeAt(0).toString(2).padStart(8, '0')).join(' ');
+        }
+
+        function binaryToString(binary) {
+            return binary.split(' ').map(byte => String.fromCharCode(parseInt(byte, 2))).join('');
+        }
+
+        // ===== خدمة العمل بدون اتصال =====
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registered:', registration);
+                }).catch(error => {
+                    console.log('ServiceWorker registration failed:', error);
+                });
+            });
+        }
+
+        // ===== تهيئة نهائية =====
+        window.addEventListener('beforeunload', () => {
+            // حفظ حالة التيرمنال
+            if (terminal) {
+                saveTerminal();
+            }
+        });
+    </script>
+</body>
+</html>
